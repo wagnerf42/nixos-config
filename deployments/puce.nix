@@ -2,13 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-
 { config, pkgs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hopi-hardware-configuration.nix
+      ./puce-hardware-configuration.nix
       ../modules/common.nix
     ];
 
@@ -19,23 +18,8 @@
   # boot.loader.grub.efiInstallAsRemovable = true;
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
   # Define on which hard drive you want to install Grub.
-  boot.loader.grub.device = "/dev/sdb"; # or "nodev" for efi only
+  boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
 
-  networking.hostName = "hopi"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-  services.printing.browsing = true;
-  services.printing.browsedConf = "BrowsePoll print.imag.fr:631";
-  # Needed for printer discovery
-  services.avahi.enable = true;
-  services.avahi.nssmdns = true;
-
-
-  fileSystems."/mnt/old" = {
-    device = "/dev/sdb1";
-    fsType = "ext4";
-  };
+  networking.hostName = "puce"; # Define your hostname.
+  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 }
-
