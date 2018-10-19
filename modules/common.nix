@@ -17,7 +17,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
      wget vim_configurable
-     firefox evince enlightenment.terminology texlive.combined.scheme-full mplayer alacritty
+     firefox evince enlightenment.terminology texlive.combined.scheme-full mplayer alacritty vlc
      zsh zsh-prezto nix-zsh-completions zsh-completions
      gcc binutils rustup rustracer carnix rustc cargo cargo-asm rustup
      git
@@ -27,6 +27,9 @@
      python3
      python36Packages.python-language-server
      gdb
+     bc wxmaxima
+     inkscape gimp-with-plugins
+     gnuplot
   ];
 
   fonts.fonts = with pkgs; [

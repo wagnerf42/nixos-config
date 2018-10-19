@@ -32,7 +32,6 @@
   services.avahi.enable = true;
   services.avahi.nssmdns = true;
 
-
   fileSystems."/mnt/old" = {
     device = "/dev/sdb1";
     fsType = "ext4";
