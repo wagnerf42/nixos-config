@@ -30,6 +30,7 @@
      bc wxmaxima
      inkscape gimp-with-plugins
      gnuplot
+     sshfs
   ];
 
   fonts.fonts = with pkgs; [
