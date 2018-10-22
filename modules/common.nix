@@ -35,6 +35,8 @@
      slic3r-prusa3d meshlab openscad
      links
      feh
+     cmake gnumake clang
+     psmisc
   ];
 
   fonts.fonts = with pkgs; [
