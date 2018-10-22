@@ -24,6 +24,8 @@
   networking.hostName = "hopi"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
+  services.xserver.layout = "us";
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
   services.printing.browsing = true;

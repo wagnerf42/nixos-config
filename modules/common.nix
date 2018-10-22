@@ -31,6 +31,10 @@
      inkscape gimp-with-plugins
      gnuplot
      sshfs
+     firejail
+     slic3r-prusa3d meshlab openscad
+     links
+     feh
   ];
 
   fonts.fonts = with pkgs; [
@@ -68,7 +72,6 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.layout = "us";
   services.xserver.xkbOptions = "eurosign:e";
   services.xserver.windowManager.i3.enable = true;
   services.xserver.videoDrivers = ["nvidiaLegacy340"];
