@@ -12,6 +12,8 @@
       ../modules/common.nix
     ];
 
+    environments.wagner.common.enable = true;
+
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;

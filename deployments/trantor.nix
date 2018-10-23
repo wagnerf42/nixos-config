@@ -11,6 +11,14 @@
       ../modules/common.nix
     ];
 
+    environments.wagner.common.enable = true;
+
+    environment.systemPackages = with pkgs; [
+     wesnoth scummvm opendungeons
+     webtorrent_desktop
+     transmission-gtk
+    ];
+
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
