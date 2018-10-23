@@ -35,6 +35,9 @@
      slic3r-prusa3d meshlab openscad
      links
      feh
+     nodejs
+     wesnoth scummvm opendungeons
+     webtorrent_desktop
   ];
 
   fonts.fonts = with pkgs; [

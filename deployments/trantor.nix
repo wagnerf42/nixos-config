@@ -27,17 +27,25 @@
   services.xserver.monitorSection =  ''
     HorizSync       28.0 - 33.0
     VertRefresh     43.0 - 72.0
-    Option         "DPMS"
+    Option          "DPMS"
     Modeline        "Mode 0" 225.0 2560 2608 2640 2720 1440 1443 1448 1481 +hsync -vsync
   '';
   services.xserver.deviceSection = ''
     Option "ModeValidation" "AllowNonEdidModes"
 '';
+  services.xserver.extraDisplaySettings = ''
+    Option     "metamodes" "Mode 0"
+'';
   services.xserver.exportConfiguration = true;
-  services.xserver.resolutions = [{x = 2560; y = 1440;} {x = 1920; y = 1080;} {x = 1280; y = 1024;} {x = 1024; y = 768;} {x = 800; y = 600;} {x = 640; y = 480;}];
+  services.xserver.resolutions = [{x = 2560; y = 1440;} {x = 1920; y = 1080;}];
   services.xserver.layout = "fr";
   services.xserver.desktopManager.lxqt.enable = true;
+  services.xserver.desktopManager.kodi.enable = true;
 
+  # Make Steam work
+  users.users.wagnerf.packages = [ pkgs.steam ];
+  hardware.opengl.driSupport32Bit = true;
+  hardware.pulseaudio.support32Bit = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -50,6 +58,11 @@
   users.users.yann = {
      isNormalUser = true;
      uid = 1002;
+  };
+
+  users.users.popcorn = {
+     isNormalUser = true;
+     uid = 1003;
   };
 
 }
