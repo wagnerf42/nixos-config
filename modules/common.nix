@@ -22,6 +22,8 @@ in {
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
+         pciutils
+         mc glxinfo
          wget vim_configurable
          firefox evince enlightenment.terminology texlive.combined.scheme-full mplayer alacritty vlc
          zsh zsh-prezto nix-zsh-completions zsh-completions

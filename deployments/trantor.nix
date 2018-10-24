@@ -13,6 +13,7 @@
 
     environments.wagner.common.enable = true;
 
+
     environment.systemPackages = with pkgs; [
      wesnoth scummvm opendungeons
      webtorrent_desktop
@@ -52,11 +53,13 @@
 
   # Make Steam work
   users.users.wagnerf.packages = [ pkgs.steam ];
+  hardware.opengl.enable = true;
   hardware.opengl.driSupport32Bit = true;
   hardware.pulseaudio.support32Bit = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.printing.drivers = [pkgs.brlaser];
 
   users.users.kinda = {
      isNormalUser = true;
@@ -66,11 +69,6 @@
   users.users.yann = {
      isNormalUser = true;
      uid = 1002;
-  };
-
-  users.users.popcorn = {
-     isNormalUser = true;
-     uid = 1003;
   };
 
 }
