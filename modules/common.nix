@@ -22,6 +22,8 @@ in {
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
+        gd
+        pandoc
          pciutils
          mc glxinfo
          wget vim_configurable
