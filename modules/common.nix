@@ -25,6 +25,8 @@ in {
          weechat
          geeqie
          xorg.xhost
+         gd
+         pandoc
          pciutils
          mc glxinfo
          wget vim_configurable
