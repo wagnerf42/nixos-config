@@ -61,11 +61,7 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  services.printing.drivers = [
-    # pkgs.foomatic-filters
-    # pkgs.gutenprintBin
-    pkgs.gutenprint
-  ];
+  services.printing.drivers = [ (pkgs.callPackage ../modules/brlaser.nix {}) ];
 
   services.avahi.enable = true;
 
