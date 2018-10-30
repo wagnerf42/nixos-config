@@ -11,6 +11,7 @@
       ../modules/common.nix
     ];
 
+
     environments.wagner.common.enable = true;
 
 
@@ -18,6 +19,7 @@
      wesnoth scummvm opendungeons
      webtorrent_desktop
      transmission-gtk
+     minetest
     ];
 
   # Use the GRUB 2 boot loader.
@@ -30,6 +32,7 @@
   boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
 
   networking.hostName = "trantor"; # Define your hostname.
+  networking.extraHosts = "192.168.0.14 ananas";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # custom modeline because monitor is lying on edid
@@ -53,13 +56,18 @@
 
   # Make Steam work
   users.users.wagnerf.packages = [ pkgs.steam ];
-  hardware.opengl.enable = true;
   hardware.opengl.driSupport32Bit = true;
   hardware.pulseaudio.support32Bit = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  services.printing.drivers = [pkgs.brlaser];
+  services.printing.drivers = [
+    # pkgs.foomatic-filters
+    # pkgs.gutenprintBin
+    pkgs.gutenprint
+  ];
+
+  services.avahi.enable = true;
 
   users.users.kinda = {
      isNormalUser = true;

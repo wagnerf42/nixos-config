@@ -22,6 +22,9 @@ in {
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
+         weechat
+         geeqie
+         xorg.xhost
          pciutils
          mc glxinfo
          wget vim_configurable
