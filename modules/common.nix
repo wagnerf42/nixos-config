@@ -22,6 +22,8 @@ in {
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
+        # my vim config
+        (pkgs.callPackage ../config/my_vim.nix {})
          pciutils
          mc glxinfo
          wget vim_configurable
