@@ -24,6 +24,16 @@ in {
       environment.systemPackages = with pkgs; [
         # my vim config
         (pkgs.callPackage ../config/my_vim.nix {})
+         imagemagick
+         valgrind kcachegrind graphviz linuxPackages.perf
+         ffmpeg
+         vokoscreen
+         apg
+         weechat
+         geeqie
+         xorg.xhost
+         gd
+         pandoc
          pciutils
          mc glxinfo
          wget vim_configurable
