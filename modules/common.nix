@@ -23,6 +23,8 @@ in {
       # $ nix search wget
       environment.systemPackages = with pkgs; [
          pkgconfig
+        # my vim config
+        (pkgs.callPackage ../config/my_vim.nix {})
          imagemagick
          valgrind kcachegrind graphviz linuxPackages.perf
          ffmpeg
