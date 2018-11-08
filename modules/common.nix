@@ -22,6 +22,7 @@ in {
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
+         pkgconfig
          imagemagick
          valgrind kcachegrind graphviz linuxPackages.perf
          ffmpeg
@@ -105,6 +106,13 @@ in {
       users.extraUsers.wagnerf = {
          isNormalUser = true;
          uid = 1000;
+         extraGroups = ["wheel"];
+         shell = pkgs.zsh;
+       };
+
+      users.extraUsers.demo = {
+         isNormalUser = true;
+         uid = 1003;
          extraGroups = ["wheel"];
          shell = pkgs.zsh;
        };
