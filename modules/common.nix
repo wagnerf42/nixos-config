@@ -28,6 +28,8 @@ in {
          pkgconfig
         # my vim config
         (pkgs.callPackage ../config/my_vim.nix {})
+         ddd
+         nix-prefetch-git
          imagemagick
          valgrind kcachegrind graphviz linuxPackages.perf
          ffmpeg
@@ -43,7 +45,7 @@ in {
          wget vim_configurable
          firefox evince enlightenment.terminology texlive.combined.scheme-full mplayer alacritty vlc
          zsh zsh-prezto nix-zsh-completions zsh-completions
-         gcc binutils rustup rustracer carnix rustc cargo cargo-asm rustup
+         gcc binutils rustracer carnix rustc cargo cargo-asm rustup
          git
          thunderbird
          unzip

@@ -13,10 +13,6 @@
 
     environments.wagner.common.enable = true;
 
-    environment.systemPackages = with pkgs; [
-      ddd
-    ];
-
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
