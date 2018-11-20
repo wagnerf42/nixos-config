@@ -20,6 +20,7 @@
      webtorrent_desktop
      transmission-gtk
      minetest
+     steam
     ];
 
   # Use the GRUB 2 boot loader.
@@ -55,7 +56,7 @@
   services.xserver.desktopManager.kodi.enable = true;
 
   # Make Steam work
-  users.users.wagnerf.packages = [ pkgs.steam ];
+  # users.users.wagnerf.packages = [ pkgs.steam ];
   hardware.opengl.driSupport32Bit = true;
   hardware.pulseaudio.support32Bit = true;
 
