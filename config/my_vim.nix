@@ -111,26 +111,25 @@ vim_configurable.customize {
   '';
 
     # store your plugins in Vim packages
-    vimrcConfig.packages.myVimPackage = with vimPlugins; {
-      # loaded on launch
-      start = [
-        vim-sensible
-        vim-airline
-        vim-airline-themes
-        gruvbox
-        vim-devicons
-        webapi-vim
-        vim-fugitive
-        nerdtree
-        ultisnips
-        vim-snippets
-        LanguageClient-neovim
-        rust-vim
-        vim-nix
-        customPlugins.completor
-        customPlugins.papercolor-theme
-        customPlugins.vim-openscad
-      ];
-      opt = [ Syntastic ];
-    };
+    vimrcConfig.vam.knownPlugins = vimPlugins // customPlugins;
+    vimrcConfig.vam.pluginDictionaries = [
+      { names = [
+        "vim-sensible"
+        "vim-airline"
+        "vim-airline-themes"
+        "gruvbox"
+        "vim-devicons"
+        "webapi-vim"
+        "vim-fugitive"
+        "nerdtree"
+        "ultisnips"
+        "vim-snippets"
+        "LanguageClient-neovim"
+        "rust-vim"
+        "vim-nix"
+        "completor"
+        "papercolor-theme"
+        "vim-openscad"
+      ]; }
+    ];
   }
