@@ -22,8 +22,10 @@ in {
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
+        subversion
         ntp
          python36Packages.pip
+         python36Packages.pylint
          nssmdns
          pkgconfig
         # my vim config
@@ -45,7 +47,7 @@ in {
          wget vim_configurable
          firefox evince enlightenment.terminology texlive.combined.scheme-full mplayer alacritty vlc
          zsh zsh-prezto nix-zsh-completions zsh-completions
-         gcc binutils rustracer carnix rustc cargo cargo-asm rustup
+         gcc binutils rustracer carnix cargo cargo-asm rustup
          git
          thunderbird
          unzip
