@@ -130,6 +130,7 @@ vim_configurable.customize {
         "completor"
         "papercolor-theme"
         "vim-openscad"
+        "vim-gitgutter"
       ]; }
     ];
   }
