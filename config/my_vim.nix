@@ -76,12 +76,14 @@ vim_configurable.customize {
       let g:gruvbox_italic=1
       let g:gruvbox_bold=1
       let g:gruvbox_contrast_dark='soft'
-      syntax on
-
-      colo gruvbox
+      highlight Normal ctermbg=NONE " this seems to fix missing background pieces
       set background=dark
-      " colo PaperColor
+      syntax on
+      colo gruvbox
+
       " set background=light
+      " colo PaperColor
+
       set number
 
       let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
