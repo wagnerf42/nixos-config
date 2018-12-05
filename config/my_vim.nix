@@ -68,6 +68,14 @@ vim_configurable.customize {
 
       set encoding=utf-8
 
+      if exists('+termguicolors') " true color with alacritty (https://github.com/jwilm/alacritty/issues/109)
+        let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+        let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+        set termguicolors
+      endif
+      let g:gruvbox_italic=1
+      let g:gruvbox_bold=1
+      let g:gruvbox_contrast_dark='soft'
       syntax on
 
       colo gruvbox
@@ -108,6 +116,9 @@ vim_configurable.customize {
       \ 'go': ['go-langserver'],
       \ 'c' : ['clangd'] }
 
+      nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+      nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR> " hit :pc to close the preview window
+      nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
   '';
 
     # store your plugins in Vim packages
