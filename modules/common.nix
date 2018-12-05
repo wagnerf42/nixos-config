@@ -22,8 +22,10 @@ in {
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
+        subversion
         ntp
          python36Packages.pip
+         python36Packages.pylint
          nssmdns
          pkgconfig
         # my vim config
@@ -58,7 +60,8 @@ in {
          gnuplot
          sshfs
          firejail
-         slic3r-prusa3d meshlab openscad
+         # slic3r-prusa3d
+         meshlab openscad
          links
          feh
          cmake gnumake clang
