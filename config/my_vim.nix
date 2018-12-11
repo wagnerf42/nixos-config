@@ -76,7 +76,14 @@ vim_configurable.customize {
       let g:gruvbox_italic=1
       let g:gruvbox_bold=1
       let g:gruvbox_contrast_dark='soft'
-      highlight Normal ctermbg=NONE " this seems to fix missing background pieces
+
+	  if &term =~ '256color'
+	    " disable Background Color Erase (BCE) so that color schemes
+	    " render properly when inside 256-color tmux and GNU screen.
+	    " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+	    set t_ut=
+	  endif
+
       set background=dark
       syntax on
       colo gruvbox

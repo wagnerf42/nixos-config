@@ -48,7 +48,7 @@ in {
          wget vim_configurable
          firefox evince enlightenment.terminology texlive.combined.scheme-full mplayer alacritty vlc
          zsh zsh-prezto nix-zsh-completions zsh-completions
-         gcc binutils rustracer carnix cargo cargo-asm rustup
+         gcc binutils rustracer carnix rustup
          git
          thunderbird
          unzip
