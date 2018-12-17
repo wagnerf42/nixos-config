@@ -25,12 +25,14 @@ in {
         python37Packages.youtube-dl
         subversion
         ntp
+        python36Packages.markdown
          python36Packages.pip
          # python36Packages.pylint
          nssmdns
          pkgconfig
         # my vim config
         (pkgs.callPackage ../config/my_vim.nix {})
+        python36Packages.pelican
          ddd
          nix-prefetch-git
          imagemagick
