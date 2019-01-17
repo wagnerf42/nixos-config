@@ -22,13 +22,14 @@ in {
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
+        python36Packages.pylint
+        perlPackages.TextIconv
         libreoffice
         python37Packages.youtube-dl
         subversion
         ntp
         python36Packages.markdown
          python36Packages.pip
-         # python36Packages.pylint
          nssmdns
          pkgconfig
         # my vim config
