@@ -22,6 +22,7 @@ in {
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
+        hwloc
         python37Packages.youtube-dl
         subversion
         ntp
@@ -54,6 +55,7 @@ in {
          git
          thunderbird
          unzip
+         zip
          direnv
          python3
          python36Packages.python-language-server
