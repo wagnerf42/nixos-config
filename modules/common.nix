@@ -23,12 +23,14 @@ in {
       # $ nix search wget
       environment.systemPackages = with pkgs; [
         hwloc
+        python36Packages.pylint
+        perlPackages.TextIconv
+        libreoffice
         python37Packages.youtube-dl
         subversion
         ntp
         python36Packages.markdown
          python36Packages.pip
-         # python36Packages.pylint
          nssmdns
          pkgconfig
         # my vim config
