@@ -69,6 +69,16 @@ vim_configurable.customize {
       set encoding=utf-8
 
       set notermguicolors " i don't believe in truecolor anymore
+                          " it is just too hard to get it working
+                          " across different terminals
+
+      if &term =~ '256color'
+	    " disable Background Color Erase (BCE) so that color schemes
+	    " render properly when inside 256-color tmux and GNU screen.
+	    " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+	    set t_ut=
+	  endif
+
       let g:gruvbox_italic=1
       let g:gruvbox_bold=1
       set background=dark

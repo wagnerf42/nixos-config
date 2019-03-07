@@ -22,60 +22,62 @@ in {
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
-        hwloc
-        python36Packages.pylint
+        (pkgs.callPackage ../modules/oldhwloc.nix {})
+        python37Packages.openpyxl
+        python37Packages.setuptools
+        python37Packages.pylint
         perlPackages.TextIconv
         libreoffice
         python37Packages.youtube-dl
         subversion
         ntp
-        python36Packages.markdown
-         python36Packages.pip
-         nssmdns
-         pkgconfig
+        python37Packages.markdown
+        python37Packages.pip
+        nssmdns
+        pkgconfig
         # my vim config
         (pkgs.callPackage ../config/my_vim.nix {})
-        python36Packages.pelican
-         ddd
-         nix-prefetch-git
-         imagemagick
-         valgrind kcachegrind graphviz linuxPackages.perf
-         ffmpeg
-         vokoscreen
-         apg
-         weechat
-         geeqie
-         xorg.xhost
-         gd
-         pandoc
-         pciutils
-         mc glxinfo
-         wget vim_configurable
-         firefox evince enlightenment.terminology texlive.combined.scheme-full mplayer alacritty vlc
-         zsh zsh-prezto nix-zsh-completions zsh-completions
-         gcc binutils rustracer carnix rustup
-         git
-         thunderbird
-         unzip
-         zip
-         direnv
-         python3
-         python36Packages.python-language-server
-         gdb
-         bc wxmaxima
-         inkscape gimp-with-plugins
-         gnuplot
-         sshfs
-         firejail
-         (pkgs.callPackage ../modules/prusa3d.nix {})
-         # slic3r-prusa3d
-         meshlab openscad
-         links
-         feh
-         cmake gnumake clang
-         psmisc
-         # below is all stuff for freeminer
-         irrlicht doxygen curl openal libvorbis freetype
+        python37Packages.pelican
+        ddd
+        nix-prefetch-git
+        imagemagick
+        valgrind kcachegrind graphviz linuxPackages.perf
+        ffmpeg
+        vokoscreen
+        apg
+        weechat
+        geeqie
+        xorg.xhost
+        gd
+        pandoc
+        pciutils
+        mc glxinfo
+        wget vim_configurable
+        firefox evince enlightenment.terminology texlive.combined.scheme-full mplayer alacritty vlc
+        zsh zsh-prezto nix-zsh-completions zsh-completions
+        gcc binutils rustracer carnix rustup
+        git
+        thunderbird
+        unzip
+        zip
+        direnv
+        python3
+        python37Packages.python-language-server
+        gdb
+        bc wxmaxima
+        inkscape gimp-with-plugins
+        gnuplot
+        sshfs
+        firejail
+        (pkgs.callPackage ../modules/prusa3d.nix {})
+        # slic3r-prusa3d
+        meshlab openscad
+        links
+        feh
+        cmake gnumake clang
+        psmisc
+        # below is all stuff for freeminer
+        irrlicht doxygen curl openal libvorbis freetype
       ];
 
       fonts.fonts = with pkgs; [
