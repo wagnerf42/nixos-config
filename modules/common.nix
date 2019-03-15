@@ -22,6 +22,14 @@ in {
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
+        chromium
+        exercism
+        gnumeric
+        htop
+        libreoffice
+        pavucontrol
+        pdf2svg
+        redshift
         (pkgs.callPackage ../modules/oldhwloc.nix {})
         python37Packages.openpyxl
         python37Packages.setuptools
@@ -97,6 +105,7 @@ in {
       # programs.mtr.enable = true;
       # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
       programs.zsh.enable = true;
+      programs.firejail.enable = true;
 
       # List services that you want to enable:
 
