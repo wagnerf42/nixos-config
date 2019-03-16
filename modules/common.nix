@@ -22,6 +22,7 @@ in {
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
+        xorg.xf86inputjoystick
         python37Packages.youtube-dl
         subversion
         ntp
