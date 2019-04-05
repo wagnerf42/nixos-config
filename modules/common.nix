@@ -71,7 +71,7 @@ in {
         unzip
         zip
         direnv
-        python3
+        python37
         python37Packages.python-language-server
         gdb
         bc wxmaxima
@@ -80,14 +80,14 @@ in {
         sshfs
         firejail
         (pkgs.callPackage ../modules/prusa3d.nix {})
+        zoom
         # slic3r-prusa3d
         meshlab openscad
         links
         feh
         cmake gnumake clang
         psmisc
-        # below is all stuff for freeminer
-        irrlicht doxygen curl openal libvorbis freetype
+        doxygen curl
       ];
 
       fonts.fonts = with pkgs; [
