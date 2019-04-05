@@ -68,23 +68,21 @@ vim_configurable.customize {
 
       set encoding=utf-8
 
-      if exists('+termguicolors') " true color with alacritty (https://github.com/jwilm/alacritty/issues/109)
-        let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
-        let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
-        set termguicolors
-      endif
-      let g:gruvbox_italic=1
-      let g:gruvbox_bold=1
-      let g:gruvbox_contrast_dark='soft'
+      set notermguicolors " i don't believe in truecolor anymore
+                          " it is just too hard to get it working
+                          " across different terminals
 
-	  if &term =~ '256color'
+      if &term =~ '256color'
 	    " disable Background Color Erase (BCE) so that color schemes
 	    " render properly when inside 256-color tmux and GNU screen.
 	    " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
 	    set t_ut=
 	  endif
 
+      let g:gruvbox_italic=1
+      let g:gruvbox_bold=1
       set background=dark
+
       syntax on
       colo gruvbox
 
