@@ -33,7 +33,7 @@ in {
         (pkgs.callPackage ../modules/oldhwloc.nix {})
         python37Packages.openpyxl
         python37Packages.setuptools
-        # python37Packages.pylint
+        python37Packages.pylint
         perlPackages.TextIconv
         libreoffice
         python37Packages.youtube-dl
@@ -45,7 +45,7 @@ in {
         pkgconfig
         # my vim config
         (pkgs.callPackage ../config/my_vim.nix {})
-        # python37Packages.pelican
+        python37Packages.pelican
         ddd
         nix-prefetch-git
         imagemagick
@@ -70,7 +70,7 @@ in {
         zip
         direnv
         python37
-        # python37Packages.python-language-server
+        python37Packages.python-language-server
         gdb
         bc wxmaxima
         inkscape gimp-with-plugins
@@ -78,15 +78,14 @@ in {
         sshfs
         firejail
         (pkgs.callPackage ../modules/prusa3d.nix {})
-        (pkgs.callPackage ../modules/zoom.nix {})
+        zoom
         # slic3r-prusa3d
         meshlab openscad
         links
         feh
         cmake gnumake clang
         psmisc
-        # below is all stuff for freeminer
-        irrlicht doxygen curl openal libvorbis freetype
+        doxygen curl
       ];
 
       fonts.fonts = with pkgs; [
