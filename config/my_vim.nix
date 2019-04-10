@@ -109,7 +109,7 @@ vim_configurable.customize {
       \ 'rust': ['rustup', 'run', 'stable', 'rls'],
       \ 'javascript': ['javascript-typescript-stdio'],
       \ 'go': ['go-langserver'],
-      \ 'c' : ['clangd'] }
+      \ 'c' : ['ccls'] }
 
       nnoremap <F5> :call LanguageClient_contextMenu()<CR>
       nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR> " hit :pc to close the preview window
