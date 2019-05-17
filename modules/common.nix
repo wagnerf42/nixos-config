@@ -26,6 +26,8 @@ in {
         file
         libvpx
         pyprof2calltree
+        ccls
+        manpages
         qemu
         zoom-us
         chromium
