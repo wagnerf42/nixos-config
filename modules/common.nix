@@ -22,6 +22,10 @@ in {
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
+        discord
+        file
+        libvpx
+        pyprof2calltree
         qemu
         zoom-us
         chromium
