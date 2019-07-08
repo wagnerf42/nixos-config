@@ -23,6 +23,11 @@ in {
       # $ nix search wget
       environment.systemPackages = with pkgs; [
         openbox
+        cpufrequtils
+        discord
+        file
+        libvpx
+        pyprof2calltree
         ccls
         manpages
         qemu
@@ -132,6 +137,7 @@ in {
       services.xserver.enable = true;
       services.xserver.xkbOptions = "eurosign:e";
       services.xserver.windowManager.i3.enable = true;
+      services.xserver.windowManager.i3.package = pkgs.i3-gaps;
       services.xserver.videoDrivers = ["nvidiaLegacy340"];
 
       # Enable touchpad support.

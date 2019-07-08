@@ -14,6 +14,18 @@ let customPlugins = {
       maintainers = [ stdenv.lib.maintainers.jagajaga ];
     };
   };
+  gruvbox-community = vimUtils.buildVimPlugin {
+    name = "gruvbox-git-2019-06-03";
+    src = fetchgit {
+      url = "https://github.com/gruvbox-community/gruvbox.git";
+      rev = "0fbea40d9885021f0e14936f7ef8756f58860cb0";
+      sha256 = "1yyqzxywmh1f6gqfk38l46j5mmqrgk522235gzg1cwljhv6lqk28";
+     };
+    meta = {
+      homepage = https://github.com/gruvbox-community/gruvbox;
+      maintainers = [ stdenv.lib.maintainers.jagajaga ];
+    };
+  };
   completor = vimUtils.buildVimPlugin {
     name = "completor-git-2018-11-06";
     buildPhase = "true"; # building requires npm (for js) so I disabled it
@@ -56,9 +68,10 @@ vim_configurable.customize {
 
       set encoding=utf-8
 
-      set notermguicolors " i don't believe in truecolor anymore
-                          " it is just too hard to get it working
-                          " across different terminals
+      set termguicolors " (sigh) let's try truecolor again
+      " set notermguicolors " i don't believe in truecolor anymore
+      "                     " it is just too hard to get it working
+      "                     " across different terminals
 
       if &term =~ '256color'
 	    " disable Background Color Erase (BCE) so that color schemes
@@ -106,7 +119,7 @@ vim_configurable.customize {
       let g:LanguageClient_autoStart = 1
       let g:LanguageClient_serverCommands = {
       \ 'python': ['pyls'],
-      \ 'rust': ['rustup', 'run', 'stable', 'rls'],
+      \ 'rust': ['rls'],
       \ 'javascript': ['javascript-typescript-stdio'],
       \ 'go': ['go-langserver'],
       \ 'c' : ['ccls'] }
@@ -123,7 +136,7 @@ vim_configurable.customize {
         "vim-sensible"
         "vim-airline"
         "vim-airline-themes"
-        "gruvbox"
+        "gruvbox-community"
         "vim-devicons"
         "webapi-vim"
         "vim-fugitive"
