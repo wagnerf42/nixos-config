@@ -97,7 +97,8 @@ in {
       ];
 
       fonts.fonts = with pkgs; [
-        nerdfonts
+        iosevka
+        # nerdfonts
       ];
 
       environment.etc = let
@@ -134,7 +135,7 @@ in {
       services.xserver.enable = true;
       services.xserver.xkbOptions = "eurosign:e";
       services.xserver.windowManager.i3.enable = true;
-      services.xserver.videoDrivers = ["nvidiaLegacy340"];
+      services.xserver.windowManager.i3.package = pkgs.i3-gaps;
 
       # Enable touchpad support.
       services.xserver.libinput.enable = true;
@@ -143,7 +144,7 @@ in {
       users.extraUsers.wagnerf = {
          isNormalUser = true;
          uid = 1000;
-         extraGroups = ["wheel"];
+         extraGroups = ["wheel" "networkmanager"];
          shell = pkgs.zsh;
        };
 

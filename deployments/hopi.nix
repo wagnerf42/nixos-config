@@ -13,6 +13,7 @@
     ];
 
     environments.wagner.common.enable = true;
+    services.xserver.videoDrivers = ["nvidiaLegacy340"];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;

@@ -13,6 +13,7 @@
 
 
     environments.wagner.common.enable = true;
+    services.xserver.videoDrivers = ["nvidiaLegacy340"];
 
 
     environment.systemPackages = with pkgs; [
