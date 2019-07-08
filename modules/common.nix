@@ -22,7 +22,10 @@ in {
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
-        xorg.xf86inputjoystick
+        openbox
+        ccls
+        manpages
+        qemu
         zoom-us
         chromium
         exercism
@@ -71,7 +74,7 @@ in {
         unzip
         zip
         direnv
-        python3
+        python37
         python37Packages.python-language-server
         gdb
         bc wxmaxima
@@ -79,19 +82,20 @@ in {
         gnuplot
         sshfs
         firejail
-        (pkgs.callPackage ../modules/prusa3d.nix {})
-        # slic3r-prusa3d
+        # (pkgs.callPackage ../modules/prusa3d.nix {})
+        zoom
+        slic3r-prusa3d
         meshlab openscad
         links
         feh
         cmake gnumake clang
         psmisc
-        # below is all stuff for freeminer
-        irrlicht doxygen curl openal libvorbis freetype
+        doxygen curl
       ];
 
       fonts.fonts = with pkgs; [
-        nerdfonts
+        # nerdfonts
+        iosevka
       ];
 
       environment.etc = let

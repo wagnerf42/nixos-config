@@ -14,18 +14,6 @@ let customPlugins = {
       maintainers = [ stdenv.lib.maintainers.jagajaga ];
     };
   };
-  papercolor-theme = vimUtils.buildVimPlugin {
-    name = "papercolor-theme-git-2018-09-03";
-    src = fetchgit {
-      url = "https://github.com/NLKNguyen/papercolor-theme.git";
-      rev = "5bd7d5b3f9dd0650e6bbd1756feebe1651fa6ba8";
-      sha256 = "061551ih3pndnlimxqwa5hrxwn8knpzf87hr6q3zwr9pdfmqpm9l";
-      };
-      meta = {
-      homepage = https://github.com/NLKNguyen/papercolor-theme;
-      maintainers = [ stdenv.lib.maintainers.jagajaga ];
-      };
-  };
   completor = vimUtils.buildVimPlugin {
     name = "completor-git-2018-11-06";
     buildPhase = "true"; # building requires npm (for js) so I disabled it
@@ -121,7 +109,7 @@ vim_configurable.customize {
       \ 'rust': ['rustup', 'run', 'stable', 'rls'],
       \ 'javascript': ['javascript-typescript-stdio'],
       \ 'go': ['go-langserver'],
-      \ 'c' : ['clangd'] }
+      \ 'c' : ['ccls'] }
 
       nnoremap <F5> :call LanguageClient_contextMenu()<CR>
       nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR> " hit :pc to close the preview window
@@ -149,6 +137,8 @@ vim_configurable.customize {
         "papercolor-theme"
         "vim-openscad"
         "vim-gitgutter"
+        "molokai"
+        "vim-obsession"
       ]; }
     ];
   }
