@@ -22,6 +22,9 @@ in {
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
+        udisks usermount
+        openbox
+        cpufrequtils
         discord
         file
         libvpx
@@ -71,7 +74,7 @@ in {
         wget vim_configurable
         firefox evince enlightenment.terminology texlive.combined.scheme-full mplayer alacritty vlc
         zsh zsh-prezto nix-zsh-completions zsh-completions
-        gcc binutils rustracer carnix rustup
+        gcc binutils carnix rustup
         git
         thunderbird
         unzip
@@ -81,13 +84,13 @@ in {
         python37Packages.python-language-server
         gdb
         bc wxmaxima
-        inkscape gimp-with-plugins
+        inkscape gimp
         gnuplot
         sshfs
         firejail
-        (pkgs.callPackage ../modules/prusa3d.nix {})
+        # (pkgs.callPackage ../modules/prusa3d.nix {})
         zoom
-        # slic3r-prusa3d
+        prusa-slicer
         meshlab openscad
         links
         feh
@@ -97,8 +100,8 @@ in {
       ];
 
       fonts.fonts = with pkgs; [
-        iosevka
         # nerdfonts
+        iosevka
       ];
 
       environment.etc = let

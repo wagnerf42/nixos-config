@@ -11,8 +11,8 @@
       ../modules/common.nix
     ];
 
-    environments.wagner.common.enable = true;
-    services.xserver.videoDrivers = ["intel"];
+  environments.wagner.common.enable = true;
+  services.xserver.videoDrivers = ["intel"];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;

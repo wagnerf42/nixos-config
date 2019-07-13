@@ -63,7 +63,7 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  services.printing.drivers = [ (pkgs.callPackage ../modules/brlaser.nix {}) ];
+  services.printing.drivers = [ pkgs.hll2390dw-cups ];
 
   services.avahi.enable = true;
 
