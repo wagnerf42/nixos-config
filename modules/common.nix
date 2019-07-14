@@ -90,6 +90,7 @@ in {
         # (pkgs.callPackage ../modules/prusa3d.nix {})
         zoom
         slic3r-prusa3d
+        prusa-slicer
         meshlab openscad
         links
         feh
