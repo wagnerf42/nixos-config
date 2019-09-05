@@ -22,6 +22,8 @@ in {
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
+        espeak
+        udisks usermount
         openbox
         cpufrequtils
         discord
@@ -87,9 +89,8 @@ in {
         gnuplot
         sshfs
         firejail
-        # (pkgs.callPackage ../modules/prusa3d.nix {})
         zoom
-        # slic3r-prusa3d
+        prusa-slicer
         meshlab openscad
         links
         feh
@@ -138,7 +139,6 @@ in {
       services.xserver.xkbOptions = "eurosign:e";
       services.xserver.windowManager.i3.enable = true;
       services.xserver.windowManager.i3.package = pkgs.i3-gaps;
-      services.xserver.videoDrivers = ["nvidiaLegacy340"];
 
       # Enable touchpad support.
       services.xserver.libinput.enable = true;
@@ -147,7 +147,7 @@ in {
       users.extraUsers.wagnerf = {
          isNormalUser = true;
          uid = 1000;
-         extraGroups = ["wheel"];
+         extraGroups = ["wheel" "networkmanager"];
          shell = pkgs.zsh;
        };
 

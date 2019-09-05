@@ -68,10 +68,7 @@ vim_configurable.customize {
 
       set encoding=utf-8
 
-      set termguicolors " (sigh) let's try truecolor again
-      " set notermguicolors " i don't believe in truecolor anymore
-      "                     " it is just too hard to get it working
-      "                     " across different terminals
+      set notermguicolors
 
       if &term =~ '256color'
 	    " disable Background Color Erase (BCE) so that color schemes
