@@ -142,7 +142,7 @@ vim_configurable.customize {
         "vim-snippets"
         "LanguageClient-neovim"
         "rust-vim"
-        "vim-nix"
+        "vim-addon-nix"
         "completor"
         "papercolor-theme"
         "vim-openscad"

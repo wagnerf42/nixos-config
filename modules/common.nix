@@ -33,7 +33,7 @@ in {
         ccls
         manpages
         qemu
-        zoom-us
+        # zoom-us
         chromium
         exercism
         gnumeric
@@ -90,7 +90,7 @@ in {
         sshfs
         firejail
         zoom
-        prusa-slicer
+        # prusa-slicer
         meshlab openscad
         links
         feh
@@ -100,7 +100,7 @@ in {
       ];
 
       fonts.fonts = with pkgs; [
-        # nerdfonts
+        nerdfonts
         iosevka
       ];
 
@@ -162,6 +162,6 @@ in {
       # compatible, in order to avoid breaking some software such as database
       # servers. You should change this only after NixOS release notes say you
       # should.
-      system.stateVersion = "18.09"; # Did you read the comment?
+      system.stateVersion = "19.03"; # Did you read the comment?
   };
 }
