@@ -22,6 +22,7 @@ in {
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
+        udisks usermount
         openbox
         cpufrequtils
         discord
@@ -73,7 +74,7 @@ in {
         wget vim_configurable
         firefox evince enlightenment.terminology texlive.combined.scheme-full mplayer alacritty vlc
         zsh zsh-prezto nix-zsh-completions zsh-completions
-        gcc binutils rustracer carnix rustup
+        gcc binutils carnix rustup
         git
         thunderbird
         unzip
@@ -83,13 +84,12 @@ in {
         python37Packages.python-language-server
         gdb
         bc wxmaxima
-        inkscape gimp-with-plugins
+        inkscape gimp
         gnuplot
         sshfs
         firejail
         # (pkgs.callPackage ../modules/prusa3d.nix {})
         zoom
-        slic3r-prusa3d
         prusa-slicer
         meshlab openscad
         links
@@ -139,7 +139,6 @@ in {
       services.xserver.xkbOptions = "eurosign:e";
       services.xserver.windowManager.i3.enable = true;
       services.xserver.windowManager.i3.package = pkgs.i3-gaps;
-      services.xserver.videoDrivers = ["nvidiaLegacy340"];
 
       # Enable touchpad support.
       services.xserver.libinput.enable = true;
@@ -148,7 +147,7 @@ in {
       users.extraUsers.wagnerf = {
          isNormalUser = true;
          uid = 1000;
-         extraGroups = ["wheel"];
+         extraGroups = ["wheel" "networkmanager"];
          shell = pkgs.zsh;
        };
 
