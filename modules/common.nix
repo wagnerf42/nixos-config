@@ -22,6 +22,8 @@ in {
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
+        android-file-transfer
+        docker
         nodejs yarn # these are dependencies for coc-nvim
         espeak
         udisks usermount
@@ -57,6 +59,8 @@ in {
         nssmdns
         pkgconfig
         # my vim config
+        rustup
+        # rustc cargo rls rustracer rustfmt # needed for vim
         (pkgs.callPackage ../config/my_vim.nix {})
         ddd
         nix-prefetch-git
@@ -75,7 +79,7 @@ in {
         wget vim_configurable
         firefox evince enlightenment.terminology texlive.combined.scheme-full mplayer alacritty vlc
         zsh zsh-prezto nix-zsh-completions zsh-completions
-        gcc binutils carnix rustup
+        gcc binutils
         git
         thunderbird
         unzip
@@ -147,7 +151,7 @@ in {
       users.extraUsers.wagnerf = {
          isNormalUser = true;
          uid = 1000;
-         extraGroups = ["wheel" "networkmanager" "dialout" "jackaudio"];
+         extraGroups = ["wheel" "networkmanager" "docker" "jackaudio" "audio" "sway" "dialout" ];
          shell = pkgs.zsh;
        };
 
