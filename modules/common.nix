@@ -58,7 +58,6 @@ in {
         pkgconfig
         # my vim config
         (pkgs.callPackage ../config/my_vim.nix {})
-        python37Packages.pelican
         ddd
         nix-prefetch-git
         imagemagick
@@ -101,7 +100,7 @@ in {
       ];
 
       fonts.fonts = with pkgs; [
-        nerdfonts
+        # nerdfonts
         iosevka
       ];
 
@@ -127,7 +126,7 @@ in {
 
       # Open ports in the firewall.
       # networking.firewall.allowedTCPPorts = [ ... ];
-      # networking.firewall.allowedUDPPorts = [ ... ];
+      networking.firewall.allowedUDPPorts = [ 43517 ];
       # Or disable the firewall altogether.
       # networking.firewall.enable = false;
 
@@ -148,7 +147,7 @@ in {
       users.extraUsers.wagnerf = {
          isNormalUser = true;
          uid = 1000;
-         extraGroups = ["wheel" "networkmanager"];
+         extraGroups = ["wheel" "networkmanager" "dialout" "jackaudio"];
          shell = pkgs.zsh;
        };
 

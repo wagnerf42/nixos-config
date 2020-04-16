@@ -9,11 +9,12 @@
     [ # Include the results of the hardware scan.
       ./trantor-hardware-configuration.nix
       ../modules/common.nix
+      <musnix>
     ];
 
 
     environments.wagner.common.enable = true;
-    services.xserver.videoDrivers = ["nvidiaLegacy340"];
+    services.xserver.videoDrivers = ["nouveau"];
 
 
     environment.systemPackages = with pkgs; [
@@ -22,7 +23,33 @@
      transmission-gtk
      minetest
      steam
+     zoom-us
+     mesa
+     freemind
+     xmind
+     # vue
+     vym
     ];
+
+#  services.jack = {
+#    jackd.enable = true;
+#    # support ALSA only programs via ALSA JACK PCM plugin
+#    alsa.enable = false;
+#    # support ALSA only programs via loopback device (supports programs like Steam)
+#    loopback = {
+#      enable = true;
+#      # buffering parameters for dmix device to work with ALSA only semi-professional sound programs
+#      #dmixConfig = ''
+#      #  period_size 2048
+#      #'';
+#    };
+#  };
+#
+#  musnix.enable = true;
+#  musnix.kernel.optimize = true;
+#  musnix.kernel.realtime = true;
+#  musnix.rtirq.enable = true;
+#  musnix.das_watchdog.enable =true;
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
@@ -54,12 +81,13 @@
   services.xserver.resolutions = [{x = 2560; y = 1440;} {x = 1920; y = 1080;}];
   services.xserver.layout = "fr";
   services.xserver.desktopManager.lxqt.enable = true;
-  services.xserver.desktopManager.kodi.enable = true;
+  # services.xserver.desktopManager.kodi.enable = true;
 
   # Make Steam work
-  # users.users.wagnerf.packages = [ pkgs.steam ];
+  users.users.wagnerf.packages = [ pkgs.steam ];
   hardware.opengl.driSupport32Bit = true;
   hardware.pulseaudio.support32Bit = true;
+  hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
