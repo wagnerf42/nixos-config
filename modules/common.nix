@@ -11,10 +11,11 @@ in {
 
       # Select internationalisation properties.
       i18n = {
-         consoleFont = "Lat1-Terminus16";
-         consoleKeyMap = "us";
          defaultLocale = "fr_FR.UTF-8";
       };
+
+      console.font = "Lat1-Terminus16";
+      console.keyMap = "us";
 
       # Set your time zone.
       time.timeZone = "Europe/Paris";
@@ -62,7 +63,6 @@ in {
         rustup
         # rustc cargo rls rustracer rustfmt # needed for vim
         (pkgs.callPackage ../config/my_vim.nix {})
-        python37Packages.pelican
         ddd
         nix-prefetch-git
         imagemagick
@@ -167,6 +167,6 @@ in {
       # compatible, in order to avoid breaking some software such as database
       # servers. You should change this only after NixOS release notes say you
       # should.
-      system.stateVersion = "19.03"; # Did you read the comment?
+      system.stateVersion = "20.03"; # Did you read the comment?
   };
 }
