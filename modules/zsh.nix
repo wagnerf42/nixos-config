@@ -88,23 +88,12 @@ let
     '';
 in {
   environment_etc =
-    [ { source = "${zsh-prezto}/runcoms/zlogin";
-        target = "zlogin";
-      }
-      { source = "${zsh-prezto}/runcoms/zlogout";
-        target = "zlogout";
-      }
-      { source = self;
-        target = "zpreztorc";
-      }
-      { source = "${zsh-prezto}/runcoms/zprofile";
-        target = "zprofile.local";
-      }
-      { source = "${zsh-prezto}/runcoms/zshenv";
-        target = "zshenv.local";
-      }
-      { source = "${zsh-prezto}/runcoms/zshrc";
-        target = "zshrc.local";
-      }
-    ];
+      {
+      zlogin = { source = "${zsh-prezto}/runcoms/zlogin"; };
+      zlogout = { source = "${zsh-prezto}/runcoms/zlogout"; };
+      zpreztorc = { source = self; };
+      zprofile = { source = "${zsh-prezto}/runcoms/zprofile"; };
+      zshenv = { source = "${zsh-prezto}/runcoms/zshenv"; };
+      zshrc = { source = "${zsh-prezto}/runcoms/zshrc"; };
+      };
 }

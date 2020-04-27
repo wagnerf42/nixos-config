@@ -30,7 +30,7 @@ in {
         udisks usermount
         openbox
         cpufrequtils
-        discord
+        # discord
         file
         libvpx
         pyprof2calltree
@@ -78,7 +78,9 @@ in {
         pciutils
         mc glxinfo
         wget vim_configurable
-        firefox evince enlightenment.terminology texlive.combined.scheme-full mplayer alacritty vlc
+        firefox evince enlightenment.terminology 
+	# texlive.combined.scheme-full
+	mplayer alacritty vlc
         zsh zsh-prezto nix-zsh-completions zsh-completions
         gcc binutils
         git
@@ -105,8 +107,9 @@ in {
       ];
 
       fonts.fonts = with pkgs; [
-        nerdfonts
+        # nerdfonts
         iosevka
+	mononoki
       ];
 
       environment.etc = let

@@ -51,11 +51,6 @@ vim_configurable.customize {
       inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
       inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
       inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
-      " ultisnips default bindings compete with completor's tab
-      " so we need to remap them
-      let g:UltiSnipsExpandTrigger="<c-t>"
-      let g:UltiSnipsJumpForwardTrigger="<c-b>"
-      let g:UltiSnipsJumpBackwardTrigger="<c-z>"
       " airline :
       " for terminology you will need either to export TERM='xterm-256color'
       " or run it with '-2' option
@@ -121,8 +116,6 @@ vim_configurable.customize {
         "webapi-vim"
         "vim-fugitive"
         "nerdtree"
-        "ultisnips"
-        "vim-snippets"
         "LanguageClient-neovim"
         "rust-vim"
         "vim-addon-nix"
