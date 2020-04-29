@@ -39,6 +39,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
      minetest
+     minecraft
+     steam
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -62,12 +64,34 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.layout = "us";
+
+  # custom modeline because monitor is lying on edid
+  services.xserver.monitorSection =  ''
+    HorizSync       28.0 - 33.0
+    VertRefresh     43.0 - 72.0
+    Option          "DPMS"
+    Modeline        "Mode 0" 225.0 2560 2608 2640 2720 1440 1443 1448 1481 +hsync -vsync
+  '';
+  services.xserver.deviceSection = ''
+    Option "ModeValidation" "AllowNonEdidModes"
+'';
+  services.xserver.extraDisplaySettings = ''
+    Option     "metamodes" "Mode 0"
+'';
+  services.xserver.exportConfiguration = true;
+  services.xserver.resolutions = [{x = 2560; y = 1440;} {x = 1920; y = 1080;}];
+  services.xserver.layout = "fr";
+  # services.xserver.videoDrivers = ["nvidiaLegacy340"]; # it's still dead :-(
+
+  # Make Steam work
+  hardware.opengl.driSupport32Bit = true;
+  hardware.pulseaudio.support32Bit = true;
+
   # services.xserver.xkbOptions = "eurosign:e";
 
   # Enable touchpad support.
