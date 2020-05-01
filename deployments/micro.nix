@@ -3,13 +3,25 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-
-{
+let home-manager = builtins.fetchGit {
+        # Descriptive name to make the store path easier to identify
+        name = "home_manager";
+        url = "https://github.com/rycee/home-manager.git";
+        # `git ls-remote https://github.com/nixos/nixpkgs-channels nixos-unstable`
+        ref = "refs/heads/release-20.03";
+        rev = "a378bccd609c159fa8d421233b9c5eae04f02042";
+        };
+in {
   imports =
     [ # Include the results of the hardware scan.
       ./micro-hardware-configuration.nix
       ../modules/common.nix
+      (import "${home-manager}/nixos")
     ];
+  
+  home-manager.users.wagnerf = { pkgs, ... }: {
+      home.packages = [ pkgs.exa ];
+  };
 
   environments.wagner.common.enable = true;
 
@@ -116,6 +128,12 @@
      isNormalUser = true;
      uid = 1002;
   };
+
+  users.users.remi = {
+     isNormalUser = true;
+     uid = 1004;
+  };
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
