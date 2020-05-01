@@ -62,7 +62,7 @@ in {
         rustup
         # rustc cargo rls rustracer rustfmt # needed for vim
         (pkgs.callPackage ../config/my_vim.nix {})
-        python37Packages.pelican
+        # python37Packages.pelican
         ddd
         nix-prefetch-git
         imagemagick
@@ -105,7 +105,6 @@ in {
       ];
 
       fonts.fonts = with pkgs; [
-        nerdfonts
         iosevka
       ];
 
@@ -152,7 +151,7 @@ in {
       users.extraUsers.wagnerf = {
          isNormalUser = true;
          uid = 1000;
-         extraGroups = ["wheel" "networkmanager" "docker" "audio" "sway" "dialout" ];
+         extraGroups = ["wheel" "networkmanager" "docker" "audio" "sway" "dialout" "jackaudio" ];
          shell = pkgs.zsh;
        };
 
