@@ -116,7 +116,6 @@ vim_configurable.customize {
         "webapi-vim"
         "vim-fugitive"
         "nerdtree"
-        "vim-snippets"
         "LanguageClient-neovim"
         "rust-vim"
         "vim-addon-nix"

@@ -1,5 +1,6 @@
 { config, lib, pkgs, ... }:
 with lib;
+
 let cfg = config.environment.wagner.common;
 in {
   options.environments.wagner.common = {
@@ -11,10 +12,11 @@ in {
 
       # Select internationalisation properties.
       i18n = {
-         consoleFont = "Lat1-Terminus16";
-         consoleKeyMap = "us";
          defaultLocale = "fr_FR.UTF-8";
       };
+
+      console.font = "Lat1-Terminus16";
+      console.keyMap = "us";
 
       # Set your time zone.
       time.timeZone = "Europe/Paris";
@@ -22,6 +24,7 @@ in {
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
+        (pkgs.libsForQt5.callPackage ../modules/imagink.nix {})
         android-file-transfer
         docker
         nodejs yarn # these are dependencies for coc-nvim
@@ -29,7 +32,7 @@ in {
         udisks usermount
         openbox
         cpufrequtils
-        discord
+        # discord
         file
         libvpx
         pyprof2calltree
@@ -62,7 +65,6 @@ in {
         rustup
         # rustc cargo rls rustracer rustfmt # needed for vim
         (pkgs.callPackage ../config/my_vim.nix {})
-        # python37Packages.pelican
         ddd
         nix-prefetch-git
         imagemagick
@@ -78,7 +80,9 @@ in {
         pciutils
         mc glxinfo
         wget vim_configurable
-        firefox evince enlightenment.terminology texlive.combined.scheme-full mplayer alacritty vlc
+        firefox evince enlightenment.terminology 
+	# texlive.combined.scheme-full
+	mplayer alacritty vlc
         zsh zsh-prezto nix-zsh-completions zsh-completions
         gcc binutils
         git
@@ -106,6 +110,7 @@ in {
 
       fonts.fonts = with pkgs; [
         iosevka
+	    mononoki
       ];
 
       environment.etc = let
@@ -166,6 +171,6 @@ in {
       # compatible, in order to avoid breaking some software such as database
       # servers. You should change this only after NixOS release notes say you
       # should.
-      system.stateVersion = "19.03"; # Did you read the comment?
+      system.stateVersion = "20.03"; # Did you read the comment?
   };
 }
