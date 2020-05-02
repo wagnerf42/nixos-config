@@ -4,12 +4,23 @@
 
 { config, pkgs, ... }:
 
-{
+let
+  home-manager = builtins.fetchGit {
+    # Descriptive name to make the store path easier to identify
+    name = "home_manager";
+    url = "https://github.com/rycee/home-manager.git";
+    # `git ls-remote https://github.com/nixos/nixpkgs-channels nixos-unstable`
+    ref = "refs/heads/release-20.03";
+    rev = "a378bccd609c159fa8d421233b9c5eae04f02042";
+  };
+in {
   imports =
     [ # Include the results of the hardware scan.
       ./grou-hardware-configuration.nix
       ../modules/common.nix
       <musnix>
+      (import "${home-manager}/nixos")
+      ../modules/home.nix
     ];
 
     musnix.enable = true;

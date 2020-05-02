@@ -17,33 +17,8 @@ in {
     ./micro-hardware-configuration.nix
     ../modules/common.nix
     (import "${home-manager}/nixos")
+    ../modules/home.nix
   ];
-
-  home-manager.users.wagnerf = { pkgs, ... }: {
-    home.packages = [ pkgs.exa ];
-    programs.git = {
-      enable = true;
-      userName = "frederic wagner";
-      userEmail = "frederic.wagner@imag.fr";
-    };
-    programs.zsh = {
-      enable = true;
-      enableAutosuggestions = true;
-      history.extended = true;
-      oh-my-zsh = {
-        enable = true;
-        plugins = [ "archlinux" "git-extras" "git" "gitfast" "github" ];
-        #theme = "frozencow";
-        theme = "agnoster";
-      };
-      loginExtra = ''
-        setopt extendedglob
-        source $HOME/.aliases
-        bindkey '^R' history-incremental-pattern-search-backward
-        bindkey '^F' history-incremental-pattern-search-forward
-      '';
-    };
-  };
 
   environments.wagner.common.enable = true;
 
