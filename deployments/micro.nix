@@ -3,24 +3,46 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-let home-manager = builtins.fetchGit {
-        # Descriptive name to make the store path easier to identify
-        name = "home_manager";
-        url = "https://github.com/rycee/home-manager.git";
-        # `git ls-remote https://github.com/nixos/nixpkgs-channels nixos-unstable`
-        ref = "refs/heads/release-20.03";
-        rev = "a378bccd609c159fa8d421233b9c5eae04f02042";
-        };
+let
+  home-manager = builtins.fetchGit {
+    # Descriptive name to make the store path easier to identify
+    name = "home_manager";
+    url = "https://github.com/rycee/home-manager.git";
+    # `git ls-remote https://github.com/nixos/nixpkgs-channels nixos-unstable`
+    ref = "refs/heads/release-20.03";
+    rev = "a378bccd609c159fa8d421233b9c5eae04f02042";
+  };
 in {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./micro-hardware-configuration.nix
-      ../modules/common.nix
-      (import "${home-manager}/nixos")
-    ];
-  
+  imports = [ # Include the results of the hardware scan.
+    ./micro-hardware-configuration.nix
+    ../modules/common.nix
+    (import "${home-manager}/nixos")
+  ];
+
   home-manager.users.wagnerf = { pkgs, ... }: {
-      home.packages = [ pkgs.exa ];
+    home.packages = [ pkgs.exa ];
+    programs.git = {
+      enable = true;
+      userName = "frederic wagner";
+      userEmail = "frederic.wagner@imag.fr";
+    };
+    programs.zsh = {
+      enable = true;
+      enableAutosuggestions = true;
+      history.extended = true;
+      oh-my-zsh = {
+        enable = true;
+        plugins = [ "archlinux" "git-extras" "git" "gitfast" "github" ];
+        #theme = "frozencow";
+        theme = "agnoster";
+      };
+      loginExtra = ''
+        setopt extendedglob
+        source $HOME/.aliases
+        bindkey '^R' history-incremental-pattern-search-backward
+        bindkey '^F' history-incremental-pattern-search-forward
+      '';
+    };
   };
 
   environments.wagner.common.enable = true;
@@ -49,11 +71,7 @@ in {
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-     minetest
-     minecraft
-     steam
-  ];
+  environment.systemPackages = with pkgs; [ minetest minecraft steam ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -83,7 +101,7 @@ in {
   services.xserver.enable = true;
 
   # custom modeline because monitor is lying on edid
-  services.xserver.monitorSection =  ''
+  services.xserver.monitorSection = ''
     HorizSync       28.0 - 33.0
     VertRefresh     43.0 - 72.0
     Option          "DPMS"
@@ -91,12 +109,21 @@ in {
   '';
   services.xserver.deviceSection = ''
     Option "ModeValidation" "AllowNonEdidModes"
-'';
+  '';
   services.xserver.extraDisplaySettings = ''
     Option     "metamodes" "Mode 0"
-'';
+  '';
   services.xserver.exportConfiguration = true;
-  services.xserver.resolutions = [{x = 2560; y = 1440;} {x = 1920; y = 1080;}];
+  services.xserver.resolutions = [
+    {
+      x = 2560;
+      y = 1440;
+    }
+    {
+      x = 1920;
+      y = 1080;
+    }
+  ];
   services.xserver.layout = "fr";
   # services.xserver.videoDrivers = ["nvidiaLegacy340"]; # it's still dead :-(
 
@@ -120,20 +147,19 @@ in {
   #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
   # };
   users.users.kinda = {
-     isNormalUser = true;
-     uid = 1001;
+    isNormalUser = true;
+    uid = 1001;
   };
 
   users.users.yann = {
-     isNormalUser = true;
-     uid = 1002;
+    isNormalUser = true;
+    uid = 1002;
   };
 
   users.users.remi = {
-     isNormalUser = true;
-     uid = 1004;
+    isNormalUser = true;
+    uid = 1004;
   };
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

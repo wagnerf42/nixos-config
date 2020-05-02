@@ -25,6 +25,7 @@ in {
       # $ nix search wget
       environment.systemPackages = with pkgs; [
         (pkgs.libsForQt5.callPackage ../modules/imagink.nix {})
+        nixfmt
         android-file-transfer
         docker
         nodejs yarn # these are dependencies for coc-nvim
@@ -112,13 +113,6 @@ in {
         iosevka
 	    mononoki
       ];
-
-      environment.etc = let
-      # stolen from https://github.com/nickjanus/nixos-config/
-      zsh_config = import ../modules/zsh.nix {
-        inherit (pkgs) writeText zsh-prezto;
-      };
-      in zsh_config.environment_etc;
 
       # Some programs need SUID wrappers, can be configured further or are
       # started in user sessions.
