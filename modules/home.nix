@@ -1,6 +1,26 @@
 {
   home-manager.users.wagnerf = { pkgs, ... }: {
-    home.packages = [ pkgs.exa pkgs.dconf ];
+    home.packages = [ pkgs.dconf ];
+    home.keyboard.layout = "us";
+    xsession.enable = true;
+    xsession.windowManager.i3 = {
+      enable = true;
+      config = let mod = "Mod4"; in {
+        fonts = [ "Noto Sans 14" ];
+        modifier = mod;
+        keybindings = pkgs.lib.mkOptionDefault {
+          "${mod}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
+        };
+      };
+    };
+    programs.alacritty = {
+      enable = true;
+      settings = {
+        font.normal.family = "mononoki";
+        font.normal.style = "Regular";
+        font.size = 14;
+      };
+    };
     programs.git = {
       enable = true;
       userName = "frederic wagner";
@@ -9,6 +29,9 @@
     programs.zsh = {
       enable = true;
       enableAutosuggestions = true;
+      envExtra = ''
+        export EDITOR=vim
+      '';
       history.extended = true;
       defaultKeymap = "viins";
       oh-my-zsh = {
