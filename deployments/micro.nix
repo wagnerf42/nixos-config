@@ -30,6 +30,8 @@ in {
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
   # Define on which hard drive you want to install Grub.
   boot.loader.grub.device = "/dev/sdc"; # or "nodev" for efi only
+  # dirty hack to fix nvidia driver
+  environment.variables.LD_LIBRARY_PATH="/run/opengl-driver/lib:/run/opengl-driver-32/lib";
 
   networking.hostName = "micro"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -66,7 +68,8 @@ in {
   # networking.firewall.enable = false;
 
   # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  services.printing.enable = true;
+  services.printing.drivers = [ pkgs.brgenml1cupswrapper ];
 
   # Enable sound.
   sound.enable = true;
@@ -100,7 +103,9 @@ in {
     }
   ];
   services.xserver.layout = "fr";
-  # services.xserver.videoDrivers = ["nvidiaLegacy340"]; # it's still dead :-(
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport = true;
+  services.xserver.videoDrivers = ["nvidiaLegacy340"]; # manually hacked (see common module)
 
   # Make Steam work
   hardware.opengl.driSupport32Bit = true;
