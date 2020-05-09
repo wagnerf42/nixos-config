@@ -31,6 +31,7 @@
       enableAutosuggestions = true;
       envExtra = ''
         export EDITOR=vim
+        export PATH=$PATH:~/.cargo/bin
       '';
       history.extended = true;
       defaultKeymap = "viins";

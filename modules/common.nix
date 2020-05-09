@@ -101,7 +101,7 @@ in {
         mc glxinfo
         wget vim_configurable
         firefox evince enlightenment.terminology 
-	# texlive.combined.scheme-full
+    texlive.combined.scheme-full
 	mplayer alacritty vlc
         zsh zsh-prezto nix-zsh-completions zsh-completions
         gcc binutils
@@ -140,6 +140,9 @@ in {
       # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
       programs.zsh.enable = true;
       programs.firejail.enable = true;
+      programs.firejail.wrappedBinaries = {
+        zoom-us = "''${lib.getBin pkgs.zoom-us}/bin/zoom-us";
+      };
 
       # List services that you want to enable:
 
