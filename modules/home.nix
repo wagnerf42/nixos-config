@@ -40,6 +40,9 @@
         plugins = [ "git" "colored-man-pages" "colorize" "vi-mode" ];
         theme = "gnzh";
       };
+      initExtra = ''
+        eval "$(direnv hook zsh)"
+      '';
       loginExtra = ''
         setopt extendedglob
         source $HOME/.aliases

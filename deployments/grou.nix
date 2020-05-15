@@ -18,12 +18,12 @@ in {
     [ # Include the results of the hardware scan.
       ./grou-hardware-configuration.nix
       ../modules/common.nix
-      <musnix>
+      # <musnix>
       (import "${home-manager}/nixos")
       ../modules/home.nix
     ];
 
-    musnix.enable = true;
+    # musnix.enable = true;
     # musnix.kernel.optimize = true;
     # musnix.kernel.realtime = true;
     # musnix.das_watchdog.enable = true;
