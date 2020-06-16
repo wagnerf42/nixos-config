@@ -49,14 +49,9 @@ in vim_configurable.customize {
     let g:airline_powerline_fonts = 1
     au VimEnter * exec 'AirlineTheme hybrid'
     set encoding=utf-8
-    let g:gruvbox_italic=1
-    let g:gruvbox_bold=1
     set background=dark
-    colo gruvbox
-    " set background=light
-    " colo PaperColor
+    colo scheakur
     set number
-    let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
     " replace tabs
     set tabstop=4
     set shiftwidth=4
@@ -74,7 +69,7 @@ in vim_configurable.customize {
     let g:ale_completion_enabled = 1
     let g:ale_sign_error = "✗"
     let g:ale_sign_warning = "⚠"
-    let g:ale_linters = {'rust': ['analyzer']}
+    let g:ale_linters = { 'rust': ['analyzer'], 'python': ['pyls'] }
     let g:airline#extensions#ale#enabled = 1
   '';
 
@@ -85,17 +80,16 @@ in vim_configurable.customize {
       "vim-sensible"
       "vim-airline"
       "vim-airline-themes"
-      "gruvbox-community"
       "vim-devicons"
       "webapi-vim"
       "nerdtree"
       "rust-vim"
       "vim-addon-nix"
-      "papercolor-theme"
       "vim-openscad"
       "vim-gitgutter"
       "ale"
       "rust-syntax-ext"
+      "awesome-vim-colorschemes"
     ];
   }];
 }
