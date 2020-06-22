@@ -20,16 +20,16 @@
         };
       };
     };
-    programs.browserpass = {
-      enable = true;
-      browsers = [ "firefox" ];
-    };
+    programs.browserpass.enable = true; # we need this AND the ff plugin
+    programs.password-store.enable = true; # we need this guy and to create the password repo in ~/.local/share/password-store
     programs.firefox = {
       enable = true;
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-        https-everywhere
         browserpass
+        https-everywhere
         dark-night-mode
+        text-contrast-for-dark-themes
+        textern
         i-dont-care-about-cookies
         peertubeify
         ublock-origin
@@ -37,7 +37,6 @@
       ];
       profiles = {wagnerf={name="wagnerf";};};
     };
-    programs.password-store.enable = true;
     programs.alacritty = {
       enable = true;
       settings = {
