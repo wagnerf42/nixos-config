@@ -1,5 +1,12 @@
 {
+
   home-manager.users.wagnerf = { pkgs, ... }: {
+
+    nixpkgs.config.packageOverrides = pkgs: {
+        nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+          inherit pkgs;
+        };
+    };
     home.packages = [ pkgs.dconf ];
     home.keyboard.layout = "us";
     xsession.enable = true;
@@ -13,6 +20,24 @@
         };
       };
     };
+    programs.browserpass = {
+      enable = true;
+      browsers = [ "firefox" ];
+    };
+    programs.firefox = {
+      enable = true;
+      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        https-everywhere
+        browserpass
+        dark-night-mode
+        i-dont-care-about-cookies
+        peertubeify
+        ublock-origin
+        vimium
+      ];
+      profiles = {wagnerf={name="wagnerf";};};
+    };
+    programs.password-store.enable = true;
     programs.alacritty = {
       enable = true;
       settings = {
@@ -73,6 +98,7 @@
     services.rsibreak.enable = true;
     services.gnome-keyring.enable = true;
     services.gpg-agent.enable = true;
+    services.gpg-agent.enableSshSupport = true;
     services.network-manager-applet.enable = true;
     services.flameshot.enable = true;
     services.redshift = {
