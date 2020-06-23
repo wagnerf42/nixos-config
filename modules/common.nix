@@ -129,6 +129,7 @@ in {
       ];
 
       fonts.fonts = with pkgs; [
+        nerdfonts
         iosevka
 	    mononoki
       ];
