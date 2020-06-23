@@ -1,5 +1,12 @@
 {
+
   home-manager.users.wagnerf = { pkgs, ... }: {
+
+    nixpkgs.config.packageOverrides = pkgs: {
+        nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+          inherit pkgs;
+        };
+    };
     home.packages = [ pkgs.dconf ];
     home.keyboard.layout = "us";
     xsession.enable = true;
@@ -12,6 +19,23 @@
           "${mod}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
         };
       };
+    };
+    programs.browserpass.enable = true; # we need this AND the ff plugin
+    programs.password-store.enable = true; # we need this guy and to create the password repo in ~/.local/share/password-store
+    programs.firefox = {
+      enable = true;
+      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        browserpass
+        https-everywhere
+        dark-night-mode
+        text-contrast-for-dark-themes
+        textern
+        i-dont-care-about-cookies
+        peertubeify
+        ublock-origin
+        vimium
+      ];
+      profiles = {wagnerf={name="wagnerf";};};
     };
     programs.alacritty = {
       enable = true;
@@ -73,6 +97,7 @@
     services.rsibreak.enable = true;
     services.gnome-keyring.enable = true;
     services.gpg-agent.enable = true;
+    services.gpg-agent.enableSshSupport = true;
     services.network-manager-applet.enable = true;
     services.flameshot.enable = true;
     services.redshift = {
