@@ -22,6 +22,7 @@
     };
     programs.browserpass.enable = true; # we need this AND the ff plugin
     programs.password-store.enable = true; # we need this guy and to create the password repo in ~/.local/share/password-store
+    services.password-store-sync.enable = true;
     programs.firefox = {
       enable = true;
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
