@@ -17,6 +17,14 @@
         modifier = mod;
         keybindings = pkgs.lib.mkOptionDefault {
           "${mod}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
+          # Pulse Audio controls
+          "XF86AudioRaiseVolume" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume";
+          "XF86AudioLowerVolume" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5% #decrease sound volume";
+          "XF86AudioMute" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound";
+          "${mod}+h" = "focus left";
+          "${mod}+l" = "focus right";
+          "${mod}+k" = "focus up";
+          "${mod}+j" = "focus down";
         };
       };
     };

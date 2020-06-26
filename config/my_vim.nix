@@ -71,6 +71,9 @@ in vim_configurable.customize {
     let g:ale_sign_warning = "⚠"
     let g:ale_linters = { 'rust': ['analyzer'], 'python': ['pyls'] }
     let g:airline#extensions#ale#enabled = 1
+
+    nmap K :ALEHover<CR>
+    nmap gd :ALEGoToDefinition<CR>
   '';
 
   # store your plugins in Vim packages
