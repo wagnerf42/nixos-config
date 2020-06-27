@@ -12,9 +12,12 @@
     xsession.enable = true;
     xsession.windowManager.i3 = {
       enable = true;
+      package = pkgs.i3-gaps;
       config = let mod = "Mod4"; in {
         fonts = [ "Noto Sans 14" ];
         modifier = mod;
+        gaps.inner = 12;
+        gaps.outer = 5;
         keybindings = pkgs.lib.mkOptionDefault {
           "${mod}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
           # Pulse Audio controls
