@@ -1,5 +1,6 @@
 { config, lib, pkgs, ... }:
 with lib;
+
 let cfg = config.environment.wagner.common;
 in {
   options.environments.wagner.common = {
@@ -8,13 +9,33 @@ in {
 
   config = mkIf config.environments.wagner.common.enable {
       nixpkgs.config.allowUnfree = true;
+      nixpkgs.config.packageOverrides = super: let self = super.pkgs; in {
+        linuxPackages = super.linuxPackages.extend (linuxSelf: linuxSuper:
+        let
+          generic = args: linuxSelf.callPackage (import <nixos/pkgs/os-specific/linux/nvidia-x11/generic.nix> args) { };
+        in {
+          nvidiaPackages = linuxSuper.nvidiaPackages // {
+            legacy_340 = generic {
+              version = "340.108";
+              sha256_32bit = "1jkwa1phf0x4sgw8pvr9d6krmmr3wkgwyygrxhdazwyr2bbalci0";
+              sha256_64bit = "06xp6c0sa7v1b82gf0pq0i5p0vdhmm3v964v0ypw36y0nzqx8wf6";
+              settingsSha256 = "1zf0fy9jj6ipm5vk153swpixqm75iricmx7x49pmr97kzyczaxa7";
+              persistencedSha256 = "0v225jkiqk9rma6whxs1a4fyr4haa75bvi52ss3vsyn62zzl24na";
+              useGLVND = false;
+
+              patches = [ <nixos/pkgs/os-specific/linux/nvidia-x11/vm_operations_struct-fault.patch> ];
+            };
+          };
+        });
+      };
 
       # Select internationalisation properties.
       i18n = {
-         consoleFont = "Lat1-Terminus16";
-         consoleKeyMap = "us";
          defaultLocale = "fr_FR.UTF-8";
       };
+
+      console.font = "Lat1-Terminus16";
+      console.keyMap = "us";
 
       # Set your time zone.
       time.timeZone = "Europe/Paris";
@@ -22,6 +43,8 @@ in {
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
+        (pkgs.libsForQt5.callPackage ../modules/imagink.nix {})
+        nixfmt
         android-file-transfer
         docker
         nodejs yarn # these are dependencies for coc-nvim
@@ -29,14 +52,14 @@ in {
         udisks usermount
         openbox
         cpufrequtils
-        discord
+        # discord
         file
         libvpx
         pyprof2calltree
         ccls
         manpages
         qemu
-        # zoom-us
+        zoom-us
         chromium
         exercism
         gnumeric
@@ -77,7 +100,9 @@ in {
         pciutils
         mc glxinfo
         wget vim_configurable
-        firefox evince enlightenment.terminology texlive.combined.scheme-full mplayer alacritty vlc
+        firefox evince enlightenment.terminology 
+    texlive.combined.scheme-full
+	mplayer alacritty vlc
         zsh zsh-prezto nix-zsh-completions zsh-completions
         gcc binutils
         git
@@ -94,7 +119,7 @@ in {
         sshfs
         firejail
         zoom
-        # prusa-slicer
+        prusa-slicer
         meshlab openscad
         links
         feh
@@ -106,14 +131,8 @@ in {
       fonts.fonts = with pkgs; [
         # nerdfonts
         iosevka
+	    mononoki
       ];
-
-      environment.etc = let
-      # stolen from https://github.com/nickjanus/nixos-config/
-      zsh_config = import ../modules/zsh.nix {
-        inherit (pkgs) writeText zsh-prezto;
-      };
-      in zsh_config.environment_etc;
 
       # Some programs need SUID wrappers, can be configured further or are
       # started in user sessions.
@@ -122,6 +141,9 @@ in {
       # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
       programs.zsh.enable = true;
       programs.firejail.enable = true;
+      # programs.firejail.wrappedBinaries = {
+      #   zoom-us = "''${lib.getBin pkgs.zoom-us}/bin/zoom-us";
+      # };
 
       # List services that you want to enable:
 
@@ -166,6 +188,6 @@ in {
       # compatible, in order to avoid breaking some software such as database
       # servers. You should change this only after NixOS release notes say you
       # should.
-      system.stateVersion = "19.03"; # Did you read the comment?
+      system.stateVersion = "20.03"; # Did you read the comment?
   };
 }

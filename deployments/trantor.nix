@@ -14,7 +14,7 @@
 
 
     environments.wagner.common.enable = true;
-    services.xserver.videoDrivers = ["nouveau"];
+    services.xserver.videoDrivers = ["modesettings"];
 
 
     environment.systemPackages = with pkgs; [
@@ -91,7 +91,7 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  services.printing.drivers = [ pkgs.hll2390dw-cups ];
+  services.printing.drivers = [ pkgs.brgenml1cupswrapper ];
 
   services.avahi.enable = true;
 
