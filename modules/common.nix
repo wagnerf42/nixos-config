@@ -45,45 +45,18 @@ in {
       environment.systemPackages = with pkgs; [
         (pkgs.libsForQt5.callPackage ../modules/imagink.nix {})
         nixfmt
-        android-file-transfer
-        docker
-        nodejs yarn # these are dependencies for coc-nvim
-        espeak
-        udisks usermount
-        openbox
-        cpufrequtils
-        # discord
+        discord
         file
-        libvpx
         pyprof2calltree
         ccls
         manpages
-        qemu
-        zoom-us
         chromium
-        exercism
         gnumeric
         htop
         libreoffice
         pavucontrol
-        pdf2svg
-        redshift
-        (pkgs.callPackage ../modules/oldhwloc.nix {})
-        python37Packages.openpyxl
-        python37Packages.setuptools
-        python37Packages.pylint
-        perlPackages.TextIconv
-        libreoffice
         python37Packages.youtube-dl
-        subversion
-        ntp
-        python37Packages.markdown
-        python37Packages.pip
-        nssmdns
-        pkgconfig
-        # my vim config
         rustup
-        # rustc cargo rls rustracer rustfmt # needed for vim
         (pkgs.callPackage ../config/my_vim.nix {})
         ddd
         nix-prefetch-git
@@ -91,7 +64,6 @@ in {
         valgrind kcachegrind graphviz linuxPackages.perf
         ffmpeg
         vokoscreen
-        apg
         weechat
         geeqie
         xorg.xhost
@@ -99,11 +71,10 @@ in {
         pandoc
         pciutils
         mc glxinfo
-        wget vim_configurable
-        firefox evince enlightenment.terminology 
+        wget
+        firefox evince enlightenment.terminology
     texlive.combined.scheme-full
 	mplayer alacritty vlc
-        zsh zsh-prezto nix-zsh-completions zsh-completions
         gcc binutils
         git
         thunderbird
@@ -111,39 +82,29 @@ in {
         zip
         direnv
         python37
-        python37Packages.python-language-server
         gdb
         bc wxmaxima
         inkscape gimp
         gnuplot
         sshfs
-        firejail
-        zoom
-        # prusa-slicer
+        prusa-slicer
         meshlab openscad
         links
         feh
-        cmake gnumake clang
+        cmake gnumake
         psmisc
         doxygen curl
       ];
 
       fonts.fonts = with pkgs; [
-        nerdfonts
         iosevka
 	    mononoki
       ];
 
       # Some programs need SUID wrappers, can be configured further or are
       # started in user sessions.
-      # programs.bash.enableCompletion = true;
-      # programs.mtr.enable = true;
-      # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
       programs.zsh.enable = true;
       programs.firejail.enable = true;
-      # programs.firejail.wrappedBinaries = {
-      #   zoom-us = "''${lib.getBin pkgs.zoom-us}/bin/zoom-us";
-      # };
 
       # List services that you want to enable:
 

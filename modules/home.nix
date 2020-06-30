@@ -3,7 +3,8 @@
   home-manager.users.wagnerf = { pkgs, ... }: {
 
     nixpkgs.config.packageOverrides = pkgs: {
-        nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+      nur = import (builtins.fetchTarball
+        "https://github.com/nix-community/NUR/archive/master.tar.gz") {
           inherit pkgs;
         };
     };
@@ -13,7 +14,8 @@
     xsession.windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
-      config = let mod = "Mod4"; in {
+      config = let mod = "Mod4";
+      in {
         fonts = [ "Noto Sans 14" ];
         modifier = mod;
         gaps.inner = 12;
@@ -21,9 +23,12 @@
         keybindings = pkgs.lib.mkOptionDefault {
           "${mod}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
           # Pulse Audio controls
-          "XF86AudioRaiseVolume" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume";
-          "XF86AudioLowerVolume" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5% #decrease sound volume";
-          "XF86AudioMute" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound";
+          "XF86AudioRaiseVolume" =
+            "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume";
+          "XF86AudioLowerVolume" =
+            "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5% #decrease sound volume";
+          "XF86AudioMute" =
+            "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound";
           "${mod}+h" = "focus left";
           "${mod}+l" = "focus right";
           "${mod}+k" = "focus up";
@@ -31,8 +36,10 @@
         };
       };
     };
+    services.udiskie.enable = true;
     programs.browserpass.enable = true; # we need this AND the ff plugin
-    programs.password-store.enable = true; # we need this guy and to create the password repo in ~/.local/share/password-store
+    programs.password-store.enable =
+      true; # we need this guy and to create the password repo in ~/.local/share/password-store
     services.password-store-sync.enable = true;
     programs.firefox = {
       enable = true;
@@ -47,7 +54,18 @@
         ublock-origin
         vimium
       ];
-      profiles = {wagnerf={name="wagnerf";};};
+      profiles = {
+        wagnerf = {
+          name = "wagnerf";
+          settings = {
+            "browser.search.region" = "FR";
+            "browser.search.isUS" = false;
+            "distribution.searchplugins.defaultLocale" = "fr";
+            "general.useragent.locale" = "fr";
+            "intl.locale.requested" = "fr,en-US";
+          };
+        };
+      };
     };
     programs.alacritty = {
       enable = true;
