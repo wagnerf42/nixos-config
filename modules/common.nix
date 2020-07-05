@@ -59,7 +59,6 @@ in {
         ccls
         manpages
         qemu
-        zoom-us
         chromium
         exercism
         gnumeric
@@ -101,7 +100,7 @@ in {
         mc glxinfo
         wget vim_configurable
         firefox evince enlightenment.terminology 
-    texlive.combined.scheme-full
+    # texlive.combined.scheme-full
 	mplayer alacritty vlc
         zsh zsh-prezto nix-zsh-completions zsh-completions
         gcc binutils
@@ -129,7 +128,6 @@ in {
       ];
 
       fonts.fonts = with pkgs; [
-        nerdfonts
         iosevka
 	    mononoki
       ];
