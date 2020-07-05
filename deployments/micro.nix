@@ -29,7 +29,7 @@ in {
   # boot.loader.grub.efiInstallAsRemovable = true;
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
   # Define on which hard drive you want to install Grub.
-  boot.loader.grub.device = "/dev/sdc"; # or "nodev" for efi only
+  boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
   # dirty hack to fix nvidia driver
   environment.variables.LD_LIBRARY_PATH="/run/opengl-driver/lib:/run/opengl-driver-32/lib";
 
