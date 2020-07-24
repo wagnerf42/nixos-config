@@ -15,6 +15,19 @@ let
         maintainers = [ stdenv.lib.maintainers.jagajaga ];
       };
     };
+    wordmotion = vimUtils.buildVimPlugin {
+      name = "wordmotion-git-2020-07-09";
+      src = fetchgit {
+        url = "https://github.com/chaoren/vim-wordmotion.git";
+        rev = "5d0422e44a3d162933632791d8df1407a55cf089";
+        sha256 = "1g0x9mjiy5ywrphn3zcfvykp0qqhpprqqhxkpba5xda0wsalbk67";
+      };
+      meta = {
+        homepage = "https://github.com/chaoren/vim-wordmotion";
+        maintainers = [ stdenv.lib.maintainers.jagajaga ];
+      };
+    };
+
     rust-syntax-ext = vimUtils.buildVimPlugin {
       name = "rust-syntax-ext-git-2020-04-17";
       src = fetchgit {
@@ -80,19 +93,20 @@ in vim_configurable.customize {
   vimrcConfig.vam.knownPlugins = vimPlugins // customPlugins;
   vimrcConfig.vam.pluginDictionaries = [{
     names = [
-      "vim-sensible"
-      "vim-airline"
-      "vim-airline-themes"
-      "vim-devicons"
-      "webapi-vim"
-      "nerdtree"
-      "rust-vim"
-      "vim-addon-nix"
-      "vim-openscad"
-      "vim-gitgutter"
-      "ale"
-      "rust-syntax-ext"
-      "awesome-vim-colorschemes"
+      "vim-sensible" # sane defaults
+      "vim-airline" # fancy status line
+      "vim-airline-themes" # themes for status line
+      "vim-devicons" # icons for coding
+      "webapi-vim" # needed for RustPlay
+      "nerdtree" # file system explorer
+      "rust-vim" # rust syntax, formatting, rustplay...
+      "vim-addon-nix" # nix syntax
+      "vim-openscad" # openscad syntax
+      "vim-gitgutter" # display local changes
+      "ale" # interface to languageserver
+      "rust-syntax-ext" # more syntax for rust
+      "awesome-vim-colorschemes" # a ton of colorschemes
+      "wordmotion" # 'w' moves inside words based on case
     ];
   }];
 }
