@@ -9,6 +9,7 @@
 , lib
 , libGL
 , libpulseaudio
+, wrapQtAppsHook
 }:
 
 mkDerivation rec {
@@ -20,6 +21,7 @@ mkDerivation rec {
     name = "Imagink_8.0-amd64.tar.gz";
   };
 
+  nativeBuildInputs = [ wrapQtAppsHook ];
   buildInputs = [
     bzip2
     qt5.qtbase

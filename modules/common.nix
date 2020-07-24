@@ -9,25 +9,6 @@ in {
 
   config = mkIf config.environments.wagner.common.enable {
       nixpkgs.config.allowUnfree = true;
-      nixpkgs.config.packageOverrides = super: let self = super.pkgs; in {
-        linuxPackages = super.linuxPackages.extend (linuxSelf: linuxSuper:
-        let
-          generic = args: linuxSelf.callPackage (import <nixos/pkgs/os-specific/linux/nvidia-x11/generic.nix> args) { };
-        in {
-          nvidiaPackages = linuxSuper.nvidiaPackages // {
-            legacy_340 = generic {
-              version = "340.108";
-              sha256_32bit = "1jkwa1phf0x4sgw8pvr9d6krmmr3wkgwyygrxhdazwyr2bbalci0";
-              sha256_64bit = "06xp6c0sa7v1b82gf0pq0i5p0vdhmm3v964v0ypw36y0nzqx8wf6";
-              settingsSha256 = "1zf0fy9jj6ipm5vk153swpixqm75iricmx7x49pmr97kzyczaxa7";
-              persistencedSha256 = "0v225jkiqk9rma6whxs1a4fyr4haa75bvi52ss3vsyn62zzl24na";
-              useGLVND = false;
-
-              patches = [ <nixos/pkgs/os-specific/linux/nvidia-x11/vm_operations_struct-fault.patch> ];
-            };
-          };
-        });
-      };
 
       # Select internationalisation properties.
       i18n = {
@@ -96,6 +77,7 @@ in {
         geeqie
         xorg.xhost
         gd
+        gnupg
         pandoc
         pciutils
         mc glxinfo

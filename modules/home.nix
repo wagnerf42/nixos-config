@@ -1,17 +1,53 @@
 {
+
   home-manager.users.wagnerf = { pkgs, ... }: {
+
+    nixpkgs.config.packageOverrides = pkgs: {
+        nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+          inherit pkgs;
+        };
+    };
     home.packages = [ pkgs.dconf ];
     home.keyboard.layout = "us";
     xsession.enable = true;
     xsession.windowManager.i3 = {
       enable = true;
+      package = pkgs.i3-gaps;
       config = let mod = "Mod4"; in {
         fonts = [ "Noto Sans 14" ];
         modifier = mod;
+        gaps.inner = 12;
+        gaps.outer = 5;
         keybindings = pkgs.lib.mkOptionDefault {
           "${mod}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
+          # Pulse Audio controls
+          "XF86AudioRaiseVolume" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume";
+          "XF86AudioLowerVolume" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5% #decrease sound volume";
+          "XF86AudioMute" = "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound";
+          "${mod}+h" = "focus left";
+          "${mod}+l" = "focus right";
+          "${mod}+k" = "focus up";
+          "${mod}+j" = "focus down";
         };
       };
+    };
+    programs.browserpass.enable = true; # we need this AND the ff plugin
+    programs.password-store.enable = true; # we need this guy and to create the password repo in ~/.local/share/password-store
+    services.password-store-sync.enable = true;
+    programs.firefox = {
+      enable = true;
+      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        browserpass
+        https-everywhere
+        dark-night-mode
+        text-contrast-for-dark-themes
+        textern
+        i-dont-care-about-cookies
+        peertubeify
+        ublock-origin
+        vimium
+      ];
+      profiles = {wagnerf={name="wagnerf";};};
     };
     programs.alacritty = {
       enable = true;
@@ -73,6 +109,7 @@
     services.rsibreak.enable = true;
     services.gnome-keyring.enable = true;
     services.gpg-agent.enable = true;
+    services.gpg-agent.enableSshSupport = true;
     services.network-manager-applet.enable = true;
     services.flameshot.enable = true;
     services.redshift = {
