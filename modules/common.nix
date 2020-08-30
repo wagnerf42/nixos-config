@@ -44,6 +44,7 @@ in {
       # $ nix search wget
       environment.systemPackages = with pkgs; [
         (pkgs.libsForQt5.callPackage ../modules/imagink.nix {})
+        (pkgs.callPackage ../modules/hex-a-hop.nix {})
         nixfmt
         discord
         file
