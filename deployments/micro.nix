@@ -29,9 +29,8 @@ in {
   # boot.loader.grub.efiInstallAsRemovable = true;
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
   # Define on which hard drive you want to install Grub.
-  boot.loader.grub.device = "/dev/sdc"; # or "nodev" for efi only
-  # dirty hack to fix nvidia driver
-  environment.variables.LD_LIBRARY_PATH="/run/opengl-driver/lib:/run/opengl-driver-32/lib";
+  boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
+  boot.kernelParams = [ "mitigations=off" ];
 
   networking.hostName = "micro"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -118,7 +117,7 @@ in {
 
   # Enable the KDE Desktop Environment.
   # services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.desktopManager.pantheon.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
