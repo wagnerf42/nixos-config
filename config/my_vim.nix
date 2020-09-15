@@ -27,6 +27,18 @@ let
         maintainers = [ stdenv.lib.maintainers.jagajaga ];
       };
     };
+    ale = vimUtils.buildVimPlugin {
+      name = "ale-git-2020-09-09";
+      src = fetchgit {
+        url = "https://github.com/dense-analysis/ale.git";
+        rev = "08295ce17405cb5f6c80d2f726262493bfd21210";
+        sha256 = "1y73h2s8zbl29yvmxlds042abb7vxrgm59mx4mdpp7f41wsm72xm";
+      };
+      meta = {
+        homepage = "https://github.com/dense-analysis/ale";
+        maintainers = [ stdenv.lib.maintainers.jagajaga ];
+      };
+    };
   };
 in vim_configurable.customize {
   name = "vim";
