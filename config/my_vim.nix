@@ -28,11 +28,11 @@ let
       };
     };
     ale = vimUtils.buildVimPlugin {
-      name = "ale-git-2020-05-15";
+      name = "ale-git-2020-09-09";
       src = fetchgit {
         url = "https://github.com/dense-analysis/ale.git";
-        rev = "69d96aa9d9998a64ae7dacd700966ada6e30216f";
-        sha256 = "01gpf9j8a2k721r11ak2qmbvk06bh2l8980846hn6z00dc41rk91";
+        rev = "08295ce17405cb5f6c80d2f726262493bfd21210";
+        sha256 = "1y73h2s8zbl29yvmxlds042abb7vxrgm59mx4mdpp7f41wsm72xm";
       };
       meta = {
         homepage = "https://github.com/dense-analysis/ale";
