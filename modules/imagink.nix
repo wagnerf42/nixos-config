@@ -2,7 +2,7 @@
 , mkDerivation
 , fetchurl
 , zlib
-, systemd
+, libudev
 , qt5
 , bzip2
 , glib
@@ -30,7 +30,7 @@ mkDerivation rec {
     qt5.qtconnectivity
     qt5.qtserialport
     libpulseaudio
-    systemd.lib
+    libudev
     zlib
     glib
     libGL
@@ -46,7 +46,7 @@ mkDerivation rec {
            qt5.qtconnectivity
            qt5.qtserialport
            libpulseaudio
-           systemd.lib
+           libudev
            zlib
            stdenv.cc.cc.lib
            glib

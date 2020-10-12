@@ -78,9 +78,11 @@ in {
         doxygen curl
       ];
 
+      nixpkgs.overlays = [ (import ../nix-nerd-fonts-overlay/default.nix) ];
       fonts.fonts = with pkgs; [
-        iosevka
-	    mononoki
+        nerd-fonts.firacode
+        nerd-fonts.iosevka
+	    nerd-fonts.mononoki
       ];
 
       # Some programs need SUID wrappers, can be configured further or are
