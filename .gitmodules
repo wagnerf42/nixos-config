@@ -1,0 +1,3 @@
+[submodule "nix-nerd-fonts-overlay"]
+	path = nix-nerd-fonts-overlay
+	url = https://github.com/lightdiscord/nix-nerd-fonts-overlay.git

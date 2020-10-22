@@ -25,6 +25,7 @@ in {
       # $ nix search wget
       environment.systemPackages = with pkgs; [
         (pkgs.libsForQt5.callPackage ../modules/imagink.nix {})
+        (pkgs.callPackage ../modules/hex-a-hop.nix {})
         nixfmt
         discord
         file
@@ -78,10 +79,11 @@ in {
         doxygen curl
       ];
 
+      nixpkgs.overlays = [ (import ../nix-nerd-fonts-overlay/default.nix) ];
       fonts.fonts = with pkgs; [
-        # nerdfonts
-        iosevka
-	    mononoki
+        nerd-fonts.firacode
+        nerd-fonts.iosevka
+	    nerd-fonts.mononoki
       ];
 
       # Some programs need SUID wrappers, can be configured further or are

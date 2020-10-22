@@ -8,7 +8,7 @@
           inherit pkgs;
         };
     };
-    home.packages = [ pkgs.dconf ];
+    home.packages = [ pkgs.dconf pkgs.exa ];
     home.keyboard.layout = "us";
     xsession.enable = true;
     xsession.windowManager.i3 = {
@@ -96,10 +96,10 @@
       };
       initExtra = ''
         eval "$(direnv hook zsh)"
+        alias ls=exa
       '';
       loginExtra = ''
         setopt extendedglob
-        source $HOME/.aliases
         bindkey '^R' history-incremental-pattern-search-backward
         bindkey '^F' history-incremental-pattern-search-forward
       '';

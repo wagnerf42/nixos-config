@@ -15,19 +15,6 @@ let
         maintainers = [ stdenv.lib.maintainers.jagajaga ];
       };
     };
-    wordmotion = vimUtils.buildVimPlugin {
-      name = "wordmotion-git-2020-07-09";
-      src = fetchgit {
-        url = "https://github.com/chaoren/vim-wordmotion.git";
-        rev = "5d0422e44a3d162933632791d8df1407a55cf089";
-        sha256 = "1g0x9mjiy5ywrphn3zcfvykp0qqhpprqqhxkpba5xda0wsalbk67";
-      };
-      meta = {
-        homepage = "https://github.com/chaoren/vim-wordmotion";
-        maintainers = [ stdenv.lib.maintainers.jagajaga ];
-      };
-    };
-
     rust-syntax-ext = vimUtils.buildVimPlugin {
       name = "rust-syntax-ext-git-2020-04-17";
       src = fetchgit {
@@ -41,11 +28,11 @@ let
       };
     };
     ale = vimUtils.buildVimPlugin {
-      name = "ale-git-2020-05-15";
+      name = "ale-git-2020-09-09";
       src = fetchgit {
         url = "https://github.com/dense-analysis/ale.git";
-        rev = "69d96aa9d9998a64ae7dacd700966ada6e30216f";
-        sha256 = "01gpf9j8a2k721r11ak2qmbvk06bh2l8980846hn6z00dc41rk91";
+        rev = "08295ce17405cb5f6c80d2f726262493bfd21210";
+        sha256 = "1y73h2s8zbl29yvmxlds042abb7vxrgm59mx4mdpp7f41wsm72xm";
       };
       meta = {
         homepage = "https://github.com/dense-analysis/ale";
@@ -102,11 +89,9 @@ in vim_configurable.customize {
       "rust-vim" # rust syntax, formatting, rustplay...
       "vim-addon-nix" # nix syntax
       "vim-openscad" # openscad syntax
-      "vim-gitgutter" # display local changes
       "ale" # interface to languageserver
       "rust-syntax-ext" # more syntax for rust
       "awesome-vim-colorschemes" # a ton of colorschemes
-      "wordmotion" # 'w' moves inside words based on case
     ];
   }];
 }
