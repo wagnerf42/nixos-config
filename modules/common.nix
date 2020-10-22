@@ -117,7 +117,7 @@ in {
       users.extraUsers.wagnerf = {
          isNormalUser = true;
          uid = 1000;
-         extraGroups = ["wheel" "networkmanager" "docker" "jackaudio" "audio" "sway" "dialout" ];
+         extraGroups = ["wheel" "networkmanager" "docker" "jackaudio" "audio" "sway" "dialout" "scanner" "lp" ];
          shell = pkgs.zsh;
        };
 

@@ -40,7 +40,7 @@ in {
      xmind
      # vue
      vym
-    ];
+     ];
 
 #  services.jack = {
 #    jackd.enable = true;
@@ -102,11 +102,19 @@ in {
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  services.printing.drivers = [ pkgs.brgenml1cupswrapper ];
+  services.printing.drivers = [ pkgs.brgenml1cupswrapper
+     pkgs.epson-escpr
+  ];
+  hardware.sane.enable = true;
+  hardware.sane.extraBackends = [ 
+        (pkgs.callPackage ../modules/utsushi.nix {})
+  ];
+  services.udev.packages = [pkgs.utsushi ];
 
   services.avahi.enable = true;
 
   users.users.kinda = {
+     extraGroups = [ "scanner" "lp" ];
      isNormalUser = true;
      uid = 1001;
   };
