@@ -24,72 +24,50 @@ in {
       # List packages installed in system profile. To search, run:
       # $ nix search wget
       environment.systemPackages = with pkgs; [
-        (pkgs.libsForQt5.callPackage ../modules/imagink.nix {})
+        # jeux
         (pkgs.callPackage ../modules/hex-a-hop.nix {})
-        nixfmt
-        discord
-        file
-        pyprof2calltree
-        ccls
-        manpages
-        chromium
-        gnumeric
-        htop
-        libreoffice
+        # internet
+        discord chromium
+        weechat
+        wget
+        firefox
+        links
+        curl sshfs
+        # bureautique
+        libreoffice evince
+        # multimedia
         pavucontrol
         python37Packages.youtube-dl
-        rustup
-        (pkgs.callPackage ../config/my_vim.nix {})
-        ddd
-        nix-prefetch-git
-        imagemagick
-        valgrind kcachegrind graphviz linuxPackages.perf
-        ffmpeg
-        vokoscreen
-        weechat
+        imagemagick feh
         geeqie
-        xorg.xhost
-        gd
-        gnupg
-        pandoc
-        pciutils
-        mc glxinfo
-        wget
-        firefox evince enlightenment.terminology
-        # texlive.combined.scheme-full
-	mplayer alacritty vlc
-        gcc binutils
-        git
-        thunderbird
-        unzip
-        zip
-        direnv
-        python37
-        gdb
-        bc wxmaxima
+        mplayer vlc
         inkscape gimp
-        gnuplot
-        sshfs
         prusa-slicer
         meshlab openscad
-        links
-        feh
-        cmake gnumake
-        psmisc
-        doxygen curl
+        # misc
+        nixfmt file htop
+        (pkgs.callPackage ../config/my_vim.nix {})
+        nix-prefetch-git
+        xorg.xhost
+        gnupg
+        pciutils
+        mc glxinfo
+        enlightenment.terminology
+	    alacritty
+        bc
       ];
 
-      nixpkgs.overlays = [ (import ../nix-nerd-fonts-overlay/default.nix) ];
       fonts.fonts = with pkgs; [
-        nerd-fonts.firacode
-        nerd-fonts.iosevka
-	    nerd-fonts.mononoki
+        (nerdfonts.override {
+          fonts = [ "FiraCode" "Iosevka" "Mononoki" ];
+        })
       ];
 
       # Some programs need SUID wrappers, can be configured further or are
       # started in user sessions.
       programs.zsh.enable = true;
       programs.firejail.enable = true;
+      programs.steam.enable = true;
 
       # List services that you want to enable:
 
@@ -134,6 +112,6 @@ in {
       # compatible, in order to avoid breaking some software such as database
       # servers. You should change this only after NixOS release notes say you
       # should.
-      system.stateVersion = "20.03"; # Did you read the comment?
+      system.stateVersion = "20.09"; # Did you read the comment?
   };
 }

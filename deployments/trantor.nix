@@ -24,22 +24,14 @@ in {
     ];
 
 
-    environments.wagner.common.enable = true;
     services.xserver.videoDrivers = ["modesettings"];
-
 
     environment.systemPackages = with pkgs; [
      wesnoth scummvm opendungeons
      webtorrent_desktop
      transmission-gtk
      minetest
-     steam
-     zoom-us
      mesa
-     freemind
-     xmind
-     # vue
-     vym
      ];
 
 #  services.jack = {
@@ -95,7 +87,6 @@ in {
   # services.xserver.desktopManager.kodi.enable = true;
 
   # Make Steam work
-  users.users.wagnerf.packages = [ pkgs.steam ];
   hardware.opengl.driSupport32Bit = true;
   hardware.pulseaudio.support32Bit = true;
   hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
