@@ -10,20 +10,20 @@ let
     name = "home_manager";
     url = "https://github.com/rycee/home-manager.git";
     # `git ls-remote https://github.com/nixos/nixpkgs-channels nixos-unstable`
-    ref = "refs/heads/release-20.03";
-    rev = "a378bccd609c159fa8d421233b9c5eae04f02042";
+    ref = "refs/heads/release-20.09";
+    rev = "abaebf3b346c4bef500c5bd2fdebbed109261a0c";
   };
 in {
   imports =
     [ # Include the results of the hardware scan.
       ./trantor-hardware-configuration.nix
       ../modules/common.nix
-      <musnix>
       (import "${home-manager}/nixos")
       ../modules/home.nix
     ];
 
 
+    environments.wagner.common.enable = true;
     services.xserver.videoDrivers = ["modesettings"];
 
     environment.systemPackages = with pkgs; [
