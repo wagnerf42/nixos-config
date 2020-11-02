@@ -26,6 +26,7 @@ in {
       environment.systemPackages = with pkgs; [
         # jeux
         (pkgs.callPackage ../modules/hex-a-hop.nix {})
+        (pkgs.callPackage ../modules/adom.nix {})
         # internet
         discord chromium
         weechat

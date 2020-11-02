@@ -8,7 +8,7 @@
           inherit pkgs;
         };
     };
-    home.packages = [ pkgs.dconf pkgs.exa ];
+    home.packages = [ pkgs.dconf pkgs.exa pkgs.gnome3.gnome-backgrounds ];
     home.keyboard.layout = "us";
     xsession.enable = true;
     xsession.windowManager.i3 = {
@@ -37,6 +37,10 @@
       };
     };
     services.udiskie.enable = true;
+    services.random-background = {
+      enable = true;
+      imageDirectory = "${pkgs.gnome3.gnome-backgrounds}/share/backgrounds/gnome";
+    };
     programs.browserpass.enable = true; # we need this AND the ff plugin
     programs.password-store.enable =
       true; # we need this guy and to create the password repo in ~/.local/share/password-store
