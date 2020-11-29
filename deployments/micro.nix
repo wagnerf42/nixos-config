@@ -31,6 +31,8 @@ in {
   # Define on which hard drive you want to install Grub.
   boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
   boot.kernelParams = [ "mitigations=off" ];
+  # dirty hack to "fix" nvidia driver ; we still need to preload for steam
+  environment.variables.LD_LIBRARY_PATH="/run/opengl-driver/lib:/run/opengl-driver-32/lib";
 
   networking.hostName = "micro"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -47,7 +49,7 @@ in {
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ minetest minecraft steam ];
+  environment.systemPackages = with pkgs; [ minetest minecraft steam lutris ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -68,7 +70,7 @@ in {
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  services.printing.drivers = [ pkgs.brgenml1cupswrapper ];
+  services.printing.drivers = [ ];
 
   # Enable sound.
   sound.enable = true;
@@ -102,6 +104,7 @@ in {
     }
   ];
   services.xserver.layout = "fr";
+  services.xserver.digimend.enable = true;
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
   services.xserver.videoDrivers = ["nvidiaLegacy340"]; # manually hacked (see common module)
@@ -146,7 +149,7 @@ in {
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "20.03"; # Did you read the comment?
+  system.stateVersion = "20.09"; # Did you read the comment?
 
 }
 
