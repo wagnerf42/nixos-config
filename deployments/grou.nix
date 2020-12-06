@@ -19,14 +19,14 @@ in {
       ./grou-hardware-configuration.nix
       ../modules/common.nix
       ../modules/work.nix
-      # <musnix>
+      <musnix>
       (import "${home-manager}/nixos")
       ../modules/home.nix
     ];
 
-    # musnix.enable = true;
-    # musnix.kernel.optimize = true;
-    # musnix.kernel.realtime = true;
+    musnix.enable = true;
+    musnix.kernel.optimize = true;
+    musnix.kernel.realtime = true;
     # musnix.das_watchdog.enable = true;
 
 # services.jack = {
@@ -42,10 +42,12 @@ in {
 #       #'';
 #     };
 #   };
-#  networking.firewall.allowedUDPPorts = [ 22124 ]; # jamulus
+  networking.firewall.allowedUDPPorts = [ 22124 ]; # jamulus
 
   environments.wagner.common.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
   services.xserver.videoDrivers = ["intel"];
+  programs.sway.enable = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -57,5 +59,10 @@ in {
   networking.networkmanager.enable = true;
   networking.networkmanager.packages = [ pkgs.networkmanagerapplet ];
   networking.hostName = "grou"; # Define your hostname.
+
+  environment.systemPackages = with pkgs; [
+    jamulus
+    (pkgs.callPackage ../config/warsow {})
+  ];
 
 }
