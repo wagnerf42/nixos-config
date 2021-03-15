@@ -24,6 +24,12 @@ in {
       ../modules/home.nix
     ];
 
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+  services.printing.drivers = [ pkgs.brgenml1cupswrapper
+     pkgs.epson-escpr
+  ];
+
     musnix.enable = true;
     musnix.kernel.optimize = true;
     musnix.kernel.realtime = true;
@@ -42,7 +48,7 @@ in {
 #       #'';
 #     };
 #   };
-  networking.firewall.allowedUDPPorts = [ 22124 ]; # jamulus
+  networking.firewall.allowedUDPPorts = [ 22124 27950 44400 ]; # jamulus + warsow
 
   environments.wagner.common.enable = true;
   services.xserver.displayManager.sddm.enable = true;
@@ -59,6 +65,18 @@ in {
   networking.networkmanager.enable = true;
   networking.networkmanager.packages = [ pkgs.networkmanagerapplet ];
   networking.hostName = "grou"; # Define your hostname.
+
+# see : https://github.com/NixOS/nixpkgs/issues/88596
+# Not strictly required but pipewire will use rtkit if it is present
+# security.rtkit.enable = true;
+# services.pipewire = {
+#   enable = true;
+#   # Compatibility shims, adjust according to your needs
+#   # alsa.enable = true;
+#   # alsa.support32Bit = true;
+#   pulse.enable = true;
+#   jack.enable = true;
+# };
 
   environment.systemPackages = with pkgs; [
     jamulus

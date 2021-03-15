@@ -50,7 +50,6 @@
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         browserpass
         https-everywhere
-        dark-night-mode
         text-contrast-for-dark-themes
         textern
         i-dont-care-about-cookies

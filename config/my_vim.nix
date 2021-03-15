@@ -49,8 +49,9 @@ in vim_configurable.customize {
     let g:airline_powerline_fonts = 1
     au VimEnter * exec 'AirlineTheme hybrid'
     set encoding=utf-8
-    set background=dark
-    colo scheakur
+    set background=light
+    set termguicolors
+    colo PaperColor
     set number
     " replace tabs
     set tabstop=4
@@ -69,7 +70,7 @@ in vim_configurable.customize {
     let g:ale_completion_enabled = 1
     let g:ale_sign_error = "✗"
     let g:ale_sign_warning = "⚠"
-    let g:ale_linters = { 'rust': ['analyzer'], 'python': ['pyls'] }
+    let g:ale_linters = { 'rust': ['analyzer'], 'python': ['pyls'], 'c': ['ccls'] }
     let g:airline#extensions#ale#enabled = 1
 
     nmap K :ALEHover<CR>

@@ -109,6 +109,11 @@ in {
   hardware.opengl.driSupport = true;
   services.xserver.videoDrivers = ["nvidiaLegacy340"]; # manually hacked (see common module)
 
+  # services.dhcpd = {
+  #   enable = true;
+  #   interfaces = [ "wlp2s0" "enp4s6f0" "enp4s6f1" ];
+  # }
+
   # Make Steam work
   hardware.opengl.driSupport32Bit = true;
   hardware.pulseaudio.support32Bit = true;
