@@ -1,13 +1,13 @@
 { config, lib, pkgs, ... }:
 with lib;
 
-let cfg = config.environment.wagner.common;
-in {
+{
   options.environments.wagner.common = {
     enable = mkEnableOption "common";
   };
 
   config = mkIf config.environments.wagner.common.enable {
+      services.fractalart.enable = true;
       nixpkgs.config.allowUnfree = true;
 
       # Select internationalisation properties.
@@ -27,6 +27,7 @@ in {
         # jeux
         (pkgs.callPackage ../modules/hex-a-hop.nix {})
         # (pkgs.callPackage ../modules/adom.nix {})
+        (pkgs.callPackage ../modules/ioawn4t.nix {})
         # internet
         discord chromium
         weechat
