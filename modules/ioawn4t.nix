@@ -1,4 +1,4 @@
-{ stdenv, fetchurl, patchelf, xorg, allegro, libvorbis, libogg, libtheora }:
+{ stdenv, fetchurl, patchelf, xorg, allegro, libvorbis, libogg, libtheora, makeDesktopItem }:
 
 let
 
@@ -7,6 +7,13 @@ let
   lpath = "${stdenv.cc.cc.lib}/lib64:" + stdenv.lib.makeLibraryPath [
     allegro libvorbis libX11 libogg libtheora
   ];
+  desktopItem = makeDesktopItem {
+    name = "ioawn4t";
+    exec = "ioawn4t";
+    comment = "if on a winter's night four travellers";
+    desktopName = "ioawn4t";
+    categories = "Game;";
+  };
 in
 stdenv.mkDerivation rec {
   name = "ioawn4t";
@@ -35,6 +42,8 @@ stdenv.mkDerivation rec {
     EOF
     chmod +x $out/bin/ioawn4t
   '';
+
+  desktopItems = [ desktopItem ];
 
   meta = with stdenv.lib; {
     description = "Narrative-driven point-and-click adventure";
