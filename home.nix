@@ -9,7 +9,8 @@
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.packages = with pkgs; [
-    dconf direnv
+    dconf
+    direnv
     exa
     gnome3.gnome-backgrounds
     zsh
@@ -43,7 +44,39 @@
     glxinfo
     enlightenment.terminology
     alacritty
-    bc lxqt.qterminal
+    bc
+    lxqt.qterminal
+    # work
+    pyprof2calltree
+    ccls
+    manpages
+    gnumeric
+    rustup
+    ddd
+    valgrind
+    kcachegrind
+    graphviz
+    linuxPackages.perf
+    ffmpeg
+    vokoscreen
+    gd
+    pandoc
+    texlive.combined.scheme-full
+    gcc
+    binutils
+    git
+    unzip
+    zip
+    direnv
+    python37
+    gdb
+    wxmaxima
+    gnuplot
+    cmake
+    gnumake
+    psmisc
+    doxygen
+
   ];
   home.username = "wagnerf";
   home.homeDirectory = "/home/wagnerf";
@@ -56,7 +89,7 @@
     in {
       fonts = [ "Noto Sans 14" ];
       modifier = mod;
-      gaps.inner = 12;
+      gaps.inner = 5;
       gaps.outer = 5;
       keybindings = pkgs.lib.mkOptionDefault {
         "${mod}+Return" = "exec ${pkgs.lxqt.qterminal}/bin/qterminal";
@@ -152,8 +185,8 @@
     latitude = "45.1667";
     longitude = "5.7167";
     settings = {
-        redshift.brightness-day = "1";
-        redshift.brightness-night = "0.6";
+      redshift.brightness-day = "1";
+      redshift.brightness-night = "0.6";
     };
     tray = true;
   };
