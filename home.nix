@@ -6,9 +6,27 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url =
+        "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
+    }))
+  ];
+
+  nixpkgs.config.packageOverrides = pkgs: {
+    nur = import (builtins.fetchTarball
+      "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+        inherit pkgs;
+      };
+  };
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.packages = with pkgs; [
+    (pkgs.callPackage ./config/my_vim.nix {})
+    rustc cargo rust-analyzer
+    neovim
+    neovide
     dconf
     direnv
     exa
@@ -47,11 +65,11 @@
     bc
     lxqt.qterminal
     # work
+    strace
     pyprof2calltree
     ccls
     manpages
     gnumeric
-    rustup
     ddd
     valgrind
     kcachegrind
@@ -81,6 +99,7 @@
   home.username = "wagnerf";
   home.homeDirectory = "/home/wagnerf";
 
+  fonts.fontconfig.enable = true;
   xsession.enable = true;
   xsession.windowManager.i3 = {
     enable = true;
@@ -117,6 +136,32 @@
     true; # we need this guy and to create the password repo in ~/.local/share/password-store
   services.password-store-sync.enable = true;
 
+  programs.firefox = {
+    enable = true;
+    extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+      browserpass
+      https-everywhere
+      text-contrast-for-dark-themes
+      textern
+      i-dont-care-about-cookies
+      peertubeify
+      ublock-origin
+      vimium
+    ];
+    profiles = {
+      wagnerf = {
+        name = "wagnerf";
+        settings = {
+          "browser.search.region" = "FR";
+          "browser.search.isUS" = false;
+          "distribution.searchplugins.defaultLocale" = "fr";
+          "general.useragent.locale" = "fr";
+          "intl.locale.requested" = "fr,en-US";
+        };
+      };
+    };
+  };
+
   programs.alacritty = {
     enable = true;
     settings = {
@@ -135,7 +180,7 @@
     enableAutosuggestions = true;
     envExtra = ''
       export EDITOR=vim
-      export PATH=$PATH:~/.cargo/bin
+      export PATH=~/.nix-profile/bin:$PATH:~/.cargo/bin
     '';
     history.extended = true;
     defaultKeymap = "viins";
