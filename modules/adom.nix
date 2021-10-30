@@ -1,22 +1,17 @@
-{ stdenv, fetchurl, patchelf, xorg, curl, SDL2, SDL2_image, SDL2_mixer, SDL2_net, SDL2_ttf, ncurses5, libGL, libGLU, zlib, luajit }:
+{ stdenv, lib, fetchurl, patchelf, xorg, curl, SDL2, SDL2_image, SDL2_mixer, SDL2_net, SDL2_ttf, ncurses5, libGL, libGLU, zlib, luajit }:
 
 let
 
   inherit (xorg) libXext libX11;
 
-  lpath = "${stdenv.cc.cc.lib}/lib64:" + stdenv.lib.makeLibraryPath [
+  lpath = "${stdenv.cc.cc.lib}/lib64:" + lib.makeLibraryPath [
     curl SDL2 SDL2_image SDL2_mixer SDL2_net SDL2_ttf ncurses5 libGL libGLU zlib luajit
   ];
 in
 stdenv.mkDerivation rec {
   name = "adom-${version}-noteye";
   version = "3.3.3";
-
-  src = fetchurl {
-    url = "https://www.indiedb.com/downloads/mirror/173930/121/529dcf208799c564f42b29e8934f8875";
-    name = "adom_3.3.3.tar";
-    sha256 = "1ycdb7718slhsxqmbdsf79ygzvwx00rlppz5q2y4pcaxv4ykkv2w";
-  };
+  src = ../adom_noteye_linux_debian_64_3.3.3.tar.gz;
   buildCommand = ''
     . $stdenv/setup
 
@@ -61,7 +56,7 @@ stdenv.mkDerivation rec {
     chmod +x $out/bin/adom
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "A rogue-like game with nice graphical interface";
     homepage = "http://adom.de/";
     license = licenses.unfreeRedistributable;

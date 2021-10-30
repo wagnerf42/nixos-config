@@ -5,6 +5,7 @@
 {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  nixpkgs.config.allowUnfree = true;
 
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
@@ -23,10 +24,13 @@
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.packages = with pkgs; [
+    manpages posix_man_pages
     (pkgs.callPackage ./config/my_vim.nix {})
+    (pkgs.callPackage ./modules/adom.nix {})
     rustc cargo rust-analyzer
     neovim
     neovide
+    chromium
     dconf
     direnv
     exa
@@ -80,8 +84,6 @@
     gd
     pandoc
     texlive.combined.scheme-full
-    gcc
-    binutils
     git
     unzip
     zip
@@ -94,7 +96,6 @@
     gnumake
     psmisc
     doxygen
-
   ];
   home.username = "wagnerf";
   home.homeDirectory = "/home/wagnerf";
@@ -106,7 +107,10 @@
     package = pkgs.i3-gaps;
     config = let mod = "Mod4";
     in {
-      fonts = [ "Noto Sans 14" ];
+      fonts = {
+        names = [ "Noto Sans 14" ];
+        size = 12.0;
+      };
       modifier = mod;
       gaps.inner = 5;
       gaps.outer = 5;
@@ -170,17 +174,25 @@
       font.size = 14;
     };
   };
+  programs.kitty = {
+    enable = true;
+    font.name = "mononoki";
+    font.size = 14;
+  };
   programs.git = {
     enable = true;
     userName = "frederic wagner";
     userEmail = "frederic.wagner@imag.fr";
   };
+  home.sessionVariables = {
+      EDITOR = "vim";
+  };
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
     envExtra = ''
-      export EDITOR=vim
       export PATH=~/.nix-profile/bin:$PATH:~/.cargo/bin
+      export NIX_PATH=~/.nix-defexpr/channels
     '';
     history.extended = true;
     defaultKeymap = "viins";
