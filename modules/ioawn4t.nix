@@ -1,10 +1,10 @@
-{ stdenv, fetchurl, patchelf, xorg, allegro, libvorbis, libogg, libtheora, makeDesktopItem }:
+{ stdenv, lib, fetchurl, patchelf, xorg, allegro, libvorbis, libogg, libtheora, makeDesktopItem }:
 
 let
 
   inherit (xorg) libXext libX11;
 
-  lpath = "${stdenv.cc.cc.lib}/lib64:" + stdenv.lib.makeLibraryPath [
+  lpath = "${stdenv.cc.cc.lib}/lib64:" + lib.makeLibraryPath [
     allegro libvorbis libX11 libogg libtheora
   ];
   desktopItem = makeDesktopItem {
@@ -17,7 +17,7 @@ let
 in
 stdenv.mkDerivation rec {
   name = "ioawn4t";
-  src = /home/wagnerf/Downloads/ioawn4t.tar.gz;
+  src = ../ioawn4t.tar.gz;
   buildCommand = ''
     . $stdenv/setup
 
@@ -45,7 +45,7 @@ stdenv.mkDerivation rec {
 
   desktopItems = [ desktopItem ];
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Narrative-driven point-and-click adventure";
     homepage = "https://laurahunt.itch.io/if-on-a-winters-night-four-travelers";
     license = licenses.unfreeRedistributable;

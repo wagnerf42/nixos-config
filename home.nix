@@ -24,10 +24,16 @@
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.packages = with pkgs; [
+    util-linux
+    rsync
+    audacity sox
+    cachix
     manpages posix_man_pages
     (pkgs.callPackage ./config/my_vim.nix {})
     (pkgs.callPackage ./modules/adom.nix {})
-    rustc cargo rust-analyzer
+    # rustc cargo
+    rust-analyzer
+    spotify
     neovim
     neovide
     chromium
@@ -37,6 +43,7 @@
     gnome3.gnome-backgrounds
     zsh
     nerdfonts
+    noto-fonts-emoji
     wget
     links
     curl
@@ -246,6 +253,52 @@
       redshift.brightness-night = "0.6";
     };
     tray = true;
+  };
+
+  # email
+  programs.mbsync.enable = true;
+  programs.astroid.enable = true;
+  programs.neomutt = {
+    enable = true;
+    sort = "reverse-date";
+  };
+  programs.msmtp.enable = true;
+  programs.notmuch = {
+    enable = true;
+    hooks = {
+      preNew = "mbsync --all";
+    };
+  };
+  accounts.email = {
+    accounts.imag = {
+      neomutt.enable = true;
+      astroid.enable = true;
+      address = "frederic.wagner@univ-grenoble-alpes.fr";
+      # gpg = {
+      #   key = "F9119EC8FCC56192B5CF53A0BF4F64254BD8C8B5";
+      #   signByDefault = true;
+      # };
+      imap.host = "zimbra.univ-grenoble-alpes.fr";
+      mbsync = {
+        enable = true;
+        create = "maildir";
+      };
+      msmtp.enable = true;
+      notmuch.enable = true;
+      primary = true;
+      realName = "Frédéric Wagner";
+      signature = {
+        text = ''
+          http://datamove.imag.fr/frederic.wagner
+        '';
+        showSignature = "append";
+      };
+      passwordCommand = "mail-password";
+      smtp = {
+        host = "smtps.univ-grenoble-alpes.fr";
+      };
+      userName = "wagnerf@univ-grenoble-alpes.fr";
+    };
   };
 
   # This value determines the Home Manager release that your
