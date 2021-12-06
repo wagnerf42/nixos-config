@@ -39,7 +39,7 @@
     chromium
     dconf
     direnv
-    exa
+    exa bat
     gnome3.gnome-backgrounds
     zsh
     nerdfonts
@@ -211,6 +211,7 @@
     initExtra = ''
       eval "$(direnv hook zsh)"
       alias ls=exa
+      alias cat=bat
     '';
     loginExtra = ''
       setopt extendedglob

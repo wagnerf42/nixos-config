@@ -37,7 +37,7 @@ in vim_configurable.customize {
     let g:airline_powerline_fonts = 1
     au VimEnter * exec 'AirlineTheme hybrid'
     set encoding=utf-8
-    set background=light
+    set background=dark
     set termguicolors
     colo PaperColor
     set number
@@ -72,7 +72,7 @@ in vim_configurable.customize {
       "vim-sensible" # sane defaults
       "vim-airline" # fancy status line
       "vim-airline-themes" # themes for status line
-      "vim-devicons" # icons for coding
+      # "vim-devicons" # icons for coding
       "webapi-vim" # needed for RustPlay
       "nerdtree" # file system explorer
       "rust-vim" # rust syntax, formatting, rustplay...
