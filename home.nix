@@ -30,7 +30,8 @@
     cachix
     manpages posix_man_pages
     (pkgs.callPackage ./config/my_vim.nix {})
-    (pkgs.callPackage ./modules/adom.nix {})
+    # (pkgs.callPackage ./modules/adom.nix {})
+    (pkgs.callPackage ./config/arcwelder.nix {})
     # rustc cargo
     rust-analyzer
     spotify
@@ -54,7 +55,7 @@
     pavucontrol
     imagemagick
     feh
-    geeqie
+    # geeqie
     mplayer
     vlc
     inkscape
@@ -109,6 +110,13 @@
 
   fonts.fontconfig.enable = true;
   xsession.enable = true;
+  wayland.windowManager.sway = {
+    enable = true;
+    config = let mod = "Mod4"; in {
+      modifier = mod;
+      terminal = "${pkgs.lxqt.qterminal}/bin/qterminal";
+    };
+  };
   xsession.windowManager.i3 = {
     enable = true;
     package = pkgs.i3-gaps;
@@ -219,25 +227,25 @@
       bindkey '^F' history-incremental-pattern-search-forward
     '';
   };
-  gtk = {
-    enable = true;
-    font = {
-      name = "Noto Sans 14";
-      package = pkgs.noto-fonts;
-    };
-    iconTheme = {
-      name = "Adwaita";
-      package = pkgs.gnome3.adwaita-icon-theme;
-    };
-    theme = {
-      name = "Adapta-Nokto";
-      package = pkgs.adapta-gtk-theme;
-    };
-  };
-  qt = {
-    enable = true;
-    platformTheme = "gtk";
-  };
+  # gtk = {
+  #   enable = true;
+  #   font = {
+  #     name = "Noto Sans 14";
+  #     package = pkgs.noto-fonts;
+  #   };
+  #   iconTheme = {
+  #     name = "Adwaita";
+  #     package = pkgs.gnome3.adwaita-icon-theme;
+  #   };
+  #   theme = {
+  #     name = "Adapta-Nokto";
+  #     package = pkgs.adapta-gtk-theme;
+  #   };
+  # };
+  # qt = {
+  #   enable = true;
+  #   platformTheme = "gtk";
+  # };
 
   services.rsibreak.enable = true;
   services.gnome-keyring.enable = true;
@@ -250,7 +258,7 @@
     latitude = "45.1667";
     longitude = "5.7167";
     settings = {
-      redshift.brightness-day = "1";
+      redshift.brightness-day = "0.7";
       redshift.brightness-night = "0.6";
     };
     tray = true;
