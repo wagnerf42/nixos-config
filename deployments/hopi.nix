@@ -3,25 +3,19 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-let
-  home-manager = builtins.fetchGit {
-    # Descriptive name to make the store path easier to identify
-    name = "home_manager";
-    url = "https://github.com/rycee/home-manager.git";
-    # `git ls-remote https://github.com/nixos/nixpkgs-channels nixos-unstable`
-    ref = "refs/heads/release-20.03";
-    rev = "a378bccd609c159fa8d421233b9c5eae04f02042";
-  };
-in {
+
+{
   imports = [ # Include the results of the hardware scan.
     ./hopi-hardware-configuration.nix
     ../modules/common.nix
-    (import "${home-manager}/nixos")
-    ../modules/home.nix
   ];
 
+  nix.trustedUsers = [ "root" "wagnerf" ];
   environments.wagner.common.enable = true;
-  services.xserver.videoDrivers = [ "nvidiaLegacy340" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
+  # services.xserver.videoDrivers = [ "nv" ];
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_340;
+  boot.kernelPackages = pkgs.linuxPackages_5_4;
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
@@ -45,12 +39,7 @@ in {
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  services.printing.browsing = true;
-  services.printing.browsedConf = ''
-    BrowsePoll print.imag.fr:631
-      CreateIPPPrinterQueues All
-      '';
-  services.printing.logLevel = "debug";
+  services.printing.browsing = false;
   # Needed for printer discovery
   services.avahi.enable = true;
   services.avahi.nssmdns = true;
@@ -65,4 +54,3 @@ in {
     fsType = "ext4";
   };
 }
-

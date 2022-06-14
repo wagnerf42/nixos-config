@@ -24,15 +24,17 @@
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.packages = with pkgs; [
+    vieb
     util-linux
     rsync
     audacity sox
     cachix
-    manpages posix_man_pages
+    man-pages posix_man_pages
     (pkgs.callPackage ./config/my_vim.nix {})
     # (pkgs.callPackage ./modules/adom.nix {})
     (pkgs.callPackage ./config/arcwelder.nix {})
     # rustc cargo
+    helix
     rust-analyzer
     spotify
     neovim
@@ -46,7 +48,7 @@
     nerdfonts
     noto-fonts-emoji
     wget
-    links
+    links2
     curl
     sshfs
     libreoffice
@@ -80,7 +82,6 @@
     strace
     pyprof2calltree
     ccls
-    manpages
     gnumeric
     ddd
     valgrind
