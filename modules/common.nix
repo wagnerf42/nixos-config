@@ -7,8 +7,9 @@ with lib;
   };
 
   config = mkIf config.environments.wagner.common.enable {
-      services.fractalart.enable = true;
       nixpkgs.config.allowUnfree = true;
+      services.xserver.windowManager.i3.enable = true;
+      services.xserver.windowManager.i3.package = pkgs.i3-gaps;
 
       # Select internationalisation properties.
       i18n = {
@@ -20,58 +21,6 @@ with lib;
 
       # Set your time zone.
       time.timeZone = "Europe/Paris";
-
-      # List packages installed in system profile. To search, run:
-      # $ nix search wget
-      environment.systemPackages = with pkgs; [
-        # jeux
-        (pkgs.callPackage ../modules/hex-a-hop.nix {})
-        # (pkgs.callPackage ../modules/adom.nix {})
-        (pkgs.callPackage ../modules/ioawn4t.nix {})
-        # internet
-        discord chromium
-        weechat
-        wget
-        firefox
-        links
-        curl sshfs
-        # bureautique
-        libreoffice evince
-        # multimedia
-        pavucontrol
-        python37Packages.youtube-dl
-        imagemagick feh
-        geeqie
-        mplayer vlc
-        inkscape gimp
-        prusa-slicer
-        meshlab openscad
-        # misc
-        nixfmt file htop
-        (pkgs.callPackage ../config/my_vim.nix {})
-        nix-prefetch-git
-        xorg.xhost
-        gnupg
-        pciutils
-        mc glxinfo
-        enlightenment.terminology
-	    alacritty
-        bc
-      ];
-
-      fonts.fonts = with pkgs; [
-        (nerdfonts.override {
-          fonts = [ "FiraCode" "Iosevka" "Mononoki" ];
-        })
-      ];
-
-      # Some programs need SUID wrappers, can be configured further or are
-      # started in user sessions.
-      programs.zsh.enable = true;
-      programs.firejail.enable = true;
-      programs.steam.enable = true;
-
-      # List services that you want to enable:
 
       # Enable the OpenSSH daemon.
       services.openssh.enable = true;
@@ -89,8 +38,6 @@ with lib;
       # Enable the X11 windowing system.
       services.xserver.enable = true;
       services.xserver.xkbOptions = "eurosign:e";
-      services.xserver.windowManager.i3.enable = true;
-      services.xserver.windowManager.i3.package = pkgs.i3-gaps;
 
       # Enable touchpad support.
       services.xserver.libinput.enable = true;
@@ -114,6 +61,6 @@ with lib;
       # compatible, in order to avoid breaking some software such as database
       # servers. You should change this only after NixOS release notes say you
       # should.
-      system.stateVersion = "20.09"; # Did you read the comment?
+      system.stateVersion = "22.05"; # Did you read the comment?
   };
 }
