@@ -24,6 +24,8 @@
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.packages = with pkgs; [
+    wezterm
+    gnome.eog geeqie
     vieb
     util-linux
     rsync
@@ -33,8 +35,8 @@
     (pkgs.callPackage ./config/my_vim.nix {})
     # (pkgs.callPackage ./modules/adom.nix {})
     (pkgs.callPackage ./config/arcwelder.nix {})
+    rustup
     # rustc cargo
-    helix
     rust-analyzer
     spotify
     neovim
@@ -100,6 +102,7 @@
     python37
     gdb
     wxmaxima
+    gcc
     gnuplot
     cmake
     gnumake
@@ -131,7 +134,7 @@
       gaps.inner = 5;
       gaps.outer = 5;
       keybindings = pkgs.lib.mkOptionDefault {
-        "${mod}+Return" = "exec ${pkgs.lxqt.qterminal}/bin/qterminal";
+        "${mod}+Return" = "exec ${pkgs.kitty}/bin/kitty";
         # Pulse Audio controls
         "XF86AudioRaiseVolume" =
           "exec --no-startup-id ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume";
@@ -156,6 +159,13 @@
     true; # we need this guy and to create the password repo in ~/.local/share/password-store
   services.password-store-sync.enable = true;
 
+  programs.helix= {
+    enable = true;
+    settings =
+    {
+      theme = "bogster";
+    };
+  };
   programs.firefox = {
     enable = true;
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
@@ -228,25 +238,25 @@
       bindkey '^F' history-incremental-pattern-search-forward
     '';
   };
-  # gtk = {
-  #   enable = true;
-  #   font = {
-  #     name = "Noto Sans 14";
-  #     package = pkgs.noto-fonts;
-  #   };
-  #   iconTheme = {
-  #     name = "Adwaita";
-  #     package = pkgs.gnome3.adwaita-icon-theme;
-  #   };
-  #   theme = {
-  #     name = "Adapta-Nokto";
-  #     package = pkgs.adapta-gtk-theme;
-  #   };
-  # };
-  # qt = {
-  #   enable = true;
-  #   platformTheme = "gtk";
-  # };
+  gtk = {
+    enable = true;
+    font = {
+      name = "Noto Sans 14";
+      package = pkgs.noto-fonts;
+    };
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.gnome3.adwaita-icon-theme;
+    };
+    theme = {
+      name = "Adapta-Nokto";
+      package = pkgs.adapta-gtk-theme;
+    };
+  };
+  qt = {
+    enable = true;
+    platformTheme = "gtk";
+  };
 
   services.rsibreak.enable = true;
   services.gnome-keyring.enable = true;
