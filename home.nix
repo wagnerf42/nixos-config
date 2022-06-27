@@ -7,13 +7,6 @@
   programs.home-manager.enable = true;
   nixpkgs.config.allowUnfree = true;
 
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url =
-        "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
-    }))
-  ];
-
   nixpkgs.config.packageOverrides = pkgs: {
     nur = import (builtins.fetchTarball
       "https://github.com/nix-community/NUR/archive/master.tar.gz") {
@@ -24,49 +17,38 @@
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.packages = with pkgs; [
-    wezterm
-    gnome.eog geeqie
-    vieb
-    util-linux
-    rsync
-    audacity sox
-    cachix
+    # dev
     man-pages posix_man_pages
     (pkgs.callPackage ./config/my_vim.nix {})
-    # (pkgs.callPackage ./modules/adom.nix {})
-    (pkgs.callPackage ./config/arcwelder.nix {})
     rustup
-    # rustc cargo
     rust-analyzer
-    spotify
-    neovim
-    neovide
-    chromium
+    strace
+    pyprof2calltree
+    ccls
+    ddd
+    valgrind
+    kcachegrind
+    graphviz
+    linuxPackages.perf
+    git
+    gcc
+    cmake
+    gnumake
+    psmisc
+    doxygen
+    gdb
+    # unix
+    wezterm
+    util-linux
+    rsync
+    cachix
     dconf
-    direnv
     exa bat
-    gnome3.gnome-backgrounds
     zsh
-    nerdfonts
-    noto-fonts-emoji
     wget
     links2
     curl
     sshfs
-    libreoffice
-    evince
-    python37Packages.youtube-dl
-    pavucontrol
-    imagemagick
-    feh
-    # geeqie
-    mplayer
-    vlc
-    inkscape
-    gimp
-    prusa-slicer
-    meshlab
-    openscad
     nixfmt
     file
     htop
@@ -80,34 +62,43 @@
     alacritty
     bc
     lxqt.qterminal
-    # work
-    strace
-    pyprof2calltree
-    ccls
-    gnumeric
-    ddd
-    valgrind
-    kcachegrind
-    graphviz
-    linuxPackages.perf
-    ffmpeg
-    vokoscreen
-    gd
-    pandoc
-    texlive.combined.scheme-full
-    git
     unzip
     zip
     direnv
-    python37
-    gdb
+    # multimedia
+    gnome.eog geeqie
+    audacity sox
+    (pkgs.callPackage ./config/arcwelder.nix {})
+    spotify
+    gnome3.gnome-backgrounds
+    evince
+    python37Packages.youtube-dl
+    pavucontrol
+    imagemagick
+    feh
+    mplayer
+    vlc
+    inkscape
+    gimp
+    prusa-slicer
+    meshlab
+    openscad
+    ffmpeg
+    vokoscreen
+    # office
+    libreoffice
+    gnumeric
+    pandoc
+    # math
     wxmaxima
-    gcc
     gnuplot
-    cmake
-    gnumake
-    psmisc
-    doxygen
+    # web
+    vieb
+    chromium
+    # heavy
+    nerdfonts
+    noto-fonts-emoji
+    texlive.combined.scheme-full
   ];
   home.username = "wagnerf";
   home.homeDirectory = "/home/wagnerf";
@@ -275,51 +266,6 @@
     tray = true;
   };
 
-  # email
-  programs.mbsync.enable = true;
-  programs.astroid.enable = true;
-  programs.neomutt = {
-    enable = true;
-    sort = "reverse-date";
-  };
-  programs.msmtp.enable = true;
-  programs.notmuch = {
-    enable = true;
-    hooks = {
-      preNew = "mbsync --all";
-    };
-  };
-  accounts.email = {
-    accounts.imag = {
-      neomutt.enable = true;
-      astroid.enable = true;
-      address = "frederic.wagner@univ-grenoble-alpes.fr";
-      # gpg = {
-      #   key = "F9119EC8FCC56192B5CF53A0BF4F64254BD8C8B5";
-      #   signByDefault = true;
-      # };
-      imap.host = "zimbra.univ-grenoble-alpes.fr";
-      mbsync = {
-        enable = true;
-        create = "maildir";
-      };
-      msmtp.enable = true;
-      notmuch.enable = true;
-      primary = true;
-      realName = "Frédéric Wagner";
-      signature = {
-        text = ''
-          http://datamove.imag.fr/frederic.wagner
-        '';
-        showSignature = "append";
-      };
-      passwordCommand = "mail-password";
-      smtp = {
-        host = "smtps.univ-grenoble-alpes.fr";
-      };
-      userName = "wagnerf@univ-grenoble-alpes.fr";
-    };
-  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -329,5 +275,5 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "21.05";
+  home.stateVersion = "22.05";
 }
