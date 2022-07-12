@@ -20,7 +20,8 @@
     # dev
     man-pages posix_man_pages
     (pkgs.callPackage ./config/my_vim.nix {})
-    rustup
+    # rustup
+    cargo rustc rustfmt
     rust-analyzer
     strace
     pyprof2calltree
