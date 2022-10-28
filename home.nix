@@ -210,7 +210,7 @@
     enable = true;
     enableAutosuggestions = true;
     envExtra = ''
-      export PATH=~/.nix-profile/bin:$PATH:~/.cargo/bin
+      export PATH=~/.cargo/bin:~/.nix-profile/bin:$PATH
       export NIX_PATH=~/.nix-defexpr/channels
     '';
     history.extended = true;
