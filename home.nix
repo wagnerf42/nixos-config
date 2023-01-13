@@ -164,7 +164,7 @@
       }
       {
         name = "javascript";
-        auto-format = true;
+        # auto-format = true;
         # formatter = { command = "prettier"; args = ["--parser" "typescript"]; };
       }
     ];
