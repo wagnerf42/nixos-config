@@ -157,12 +157,24 @@
     {
       theme = "bogster";
     };
+    languages = [
+      {
+        name = "rust";
+        config.checkOnSave = {command = "clippy";};
+      }
+      {
+        name = "javascript";
+        auto-format = true;
+        # formatter = { command = "prettier"; args = ["--parser" "typescript"]; };
+      }
+    ];
+    
   };
   programs.firefox = {
     enable = true;
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       browserpass
-      https-everywhere
+      # https-everywhere
       text-contrast-for-dark-themes
       textern
       i-dont-care-about-cookies
