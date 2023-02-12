@@ -162,8 +162,6 @@
     enable = true;
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       browserpass
-      https-everywhere
-      text-contrast-for-dark-themes
       textern
       i-dont-care-about-cookies
       peertubeify
@@ -197,6 +195,7 @@
     font.name = "mononoki";
     font.size = 14;
     settings = {enable_audio_bell = false;};
+    theme = "3024 Day";
   };
   programs.git = {
     enable = true;
