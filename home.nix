@@ -159,15 +159,25 @@
     {
       theme = "bogster";
     };
+    languages = [
+      {
+        name = "rust";
+        config.checkOnSave = {command = "clippy";};
+      }
+      {
+        name = "javascript";
+        # auto-format = true;
+        formatter = { command = "prettier"; args = ["--parser" "typescript"]; };
+      }
+    ];
+    
   };
   programs.firefox = {
     enable = true;
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       browserpass
-      text-contrast-for-dark-themes
       textern
       i-dont-care-about-cookies
-      peertubeify
       ublock-origin
       vimium
     ];
@@ -197,6 +207,8 @@
     enable = true;
     font.name = "mononoki";
     font.size = 14;
+    settings = {enable_audio_bell = false;};
+    theme = "3024 Day";
   };
   programs.git = {
     enable = true;
@@ -210,7 +222,7 @@
     enable = true;
     enableAutosuggestions = true;
     envExtra = ''
-      export PATH=~/.nix-profile/bin:$PATH:~/.cargo/bin
+      export PATH=~/.cargo/bin:~/.nix-profile/bin:$PATH
       export NIX_PATH=~/.nix-defexpr/channels
     '';
     history.extended = true;
