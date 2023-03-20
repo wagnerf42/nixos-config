@@ -20,6 +20,7 @@
     # dev
     man-pages posix_man_pages
     (pkgs.callPackage ./config/my_vim.nix {})
+    (pkgs.callPackage ./modules/repaper.nix {})
     # rustup
     cargo rustc rustfmt
     rust-analyzer
@@ -96,6 +97,7 @@
     # web
     vieb
     chromium
+    thunderbird
     # heavy
     nerdfonts
     noto-fonts-emoji
@@ -162,7 +164,6 @@
     enable = true;
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       browserpass
-      https-everywhere
       text-contrast-for-dark-themes
       textern
       i-dont-care-about-cookies
@@ -261,8 +262,8 @@
     latitude = "45.1667";
     longitude = "5.7167";
     settings = {
-      redshift.brightness-day = "0.7";
-      redshift.brightness-night = "0.6";
+      redshift.brightness-day = "0.9";
+      redshift.brightness-night = "0.7";
     };
     tray = true;
   };
