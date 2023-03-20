@@ -18,6 +18,7 @@
   # paths it should manage.
   home.packages = with pkgs; [
     # dev
+    nodePackages.uglify-js
     man-pages posix_man_pages
     (pkgs.callPackage ./config/my_vim.nix {})
     # rustup
@@ -215,6 +216,7 @@
   };
   home.sessionVariables = {
       EDITOR = "vim";
+      CARGO_REGISTRIES_CRATES_IO_PROTOCOL="sparse";
   };
   programs.zsh = {
     enable = true;
