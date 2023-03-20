@@ -50,6 +50,20 @@ with lib;
          shell = pkgs.zsh;
        };
 
+      security.wrappers = {
+        firejail = {
+          setuid = true;
+          owner = "root";
+          group = "root";
+          source = "${pkgs.firejail.out}/bin/firejail";
+        };
+      };
+
+
+      environment.systemPackages = with pkgs; [
+        firejail
+      ];
+
       users.extraUsers.demo = {
          isNormalUser = true;
          uid = 1003;
