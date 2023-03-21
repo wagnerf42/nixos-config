@@ -3,6 +3,7 @@
 , fetchFromGitHub
 , pkg-config
 , dbus
+, nodePackages
 }:
 
 rustPlatform.buildRustPackage rec {
@@ -12,8 +13,8 @@ rustPlatform.buildRustPackage rec {
   src = fetchFromGitHub {
     owner = "wagnerf42";
     repo = "banglecomm";
-    rev = "1945733ab8be59bc3f62228679353d6d0d580762";
-    hash = "sha256-hwADAn3nxZvshWXz6Ppai4kl/edUkuEqH4ot4ccSa10=";
+    rev = "b7873c9a28c96c2c95bfe230dbba5c3d86576e98";
+    hash = "sha256-j3yM/Sn1KacQ6KAJCPjSQzAJRv+Seo/l75wu2HOHKN8=";
   };
 
   cargoHash = "sha256-0d7j4K8qTW/t93NVb5I8mU2lXWxwLWA8W3Sg3/hw/co=";
@@ -24,6 +25,7 @@ rustPlatform.buildRustPackage rec {
 
   buildInputs = [
     dbus
+    nodePackages.uglify-js
   ];
 
   meta = with lib; {

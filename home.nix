@@ -18,10 +18,9 @@
   # paths it should manage.
   home.packages = with pkgs; [
     # dev
-    nodePackages.uglify-js
     man-pages posix_man_pages
     (pkgs.callPackage ./config/my_vim.nix {})
-    (pkgs.callPackage ./modules/repaper.nix {})
+    # (pkgs.callPackage ./modules/repaper.nix {})
     (pkgs.callPackage ./config/banglecomm.nix {})
     # rustup
     cargo rustc rustfmt
