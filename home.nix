@@ -20,7 +20,7 @@
     # dev
     man-pages posix_man_pages
     (pkgs.callPackage ./config/my_vim.nix {})
-    (pkgs.callPackage ./modules/repaper.nix {})
+    # (pkgs.callPackage ./modules/repaper.nix {})
     (pkgs.callPackage ./config/banglecomm.nix {})
     # rustup
     cargo rustc rustfmt
@@ -218,6 +218,7 @@
   };
   home.sessionVariables = {
       EDITOR = "vim";
+      CARGO_REGISTRIES_CRATES_IO_PROTOCOL="sparse";
   };
   programs.zsh = {
     enable = true;
