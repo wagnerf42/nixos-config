@@ -158,7 +158,7 @@
     enable = true;
     settings =
     {
-      theme = "bogster";
+      theme = "autumn_night";
     };
     languages = [
       {
