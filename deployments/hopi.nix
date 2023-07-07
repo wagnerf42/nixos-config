@@ -49,6 +49,12 @@
 
   programs.sway.enable = true;
 
+  security.pam = {
+    services.login.googleAuthenticator.enable = true;
+    services.sudo.googleAuthenticator.enable = true;
+    services.sshd.googleAuthenticator.enable = true;
+  };
+
   fileSystems."/mnt/old" = {
     device = "/dev/sdb1";
     fsType = "ext4";
