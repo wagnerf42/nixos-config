@@ -15,6 +15,7 @@
   services.xserver.videoDrivers = [ "nvidia" ];
   # services.xserver.videoDrivers = [ "nv" ];
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_340;
+  hardware.bluetooth.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_5_4;
 
   # Use the GRUB 2 boot loader.
@@ -43,6 +44,8 @@
   # Needed for printer discovery
   services.avahi.enable = true;
   services.avahi.nssmdns = true;
+
+  services.blueman.enable = true;
 
   # enable docker daemon
   virtualisation.docker.enable = true;
