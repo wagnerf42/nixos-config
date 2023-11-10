@@ -20,6 +20,7 @@
     # dev
     man-pages posix_man_pages
     (pkgs.callPackage ./config/my_vim.nix {})
+    (pkgs.callPackage ./config/monaspace.nix {})
     # (pkgs.callPackage ./modules/repaper.nix {})
     (pkgs.callPackage ./config/banglecomm.nix {})
     # rustup
@@ -199,15 +200,15 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      font.normal.family = "mononoki";
+      font.normal.family = "Monaspace Argon";
       font.normal.style = "Regular";
-      font.size = 14;
+      font.size = 16;
     };
   };
   programs.kitty = {
     enable = true;
-    font.name = "mononoki";
-    font.size = 14;
+    font.name = "Monaspace Argon";
+    font.size = 16;
     settings = {enable_audio_bell = false;};
     theme = "Argonaut";
   };
