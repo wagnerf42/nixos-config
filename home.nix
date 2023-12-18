@@ -17,6 +17,11 @@
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.packages = with pkgs; [
+    # mutt
+    msmtp
+    neomutt
+    mutt-wizard # you'll also need pass (note for me: use short login)
+    isync
     # dev
     man-pages posix_man_pages
     (pkgs.callPackage ./config/my_vim.nix {})
