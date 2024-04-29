@@ -52,7 +52,7 @@
     rsync
     cachix
     dconf
-    exa bat
+    eza bat
     zsh
     wget
     links2
@@ -81,7 +81,7 @@
     spotify
     gnome3.gnome-backgrounds
     evince
-    python37Packages.youtube-dl
+    python310Packages.youtube-dl
     pavucontrol
     imagemagick
     feh
@@ -106,7 +106,7 @@
     chromium
     thunderbird
     # heavy
-    nerdfonts
+    # nerdfonts
     noto-fonts-emoji
     texlive.combined.scheme-full
   ];
@@ -158,36 +158,27 @@
   programs.browserpass.enable = true; # we need this AND the ff plugin
   programs.password-store.enable =
     true; # we need this guy and to create the password repo in ~/.local/share/password-store
-  services.password-store-sync.enable = true;
+  # services.password-store-sync.enable = true; #TODO: git-sync
+  services.opensnitch-ui.enable = true;
 
   programs.helix= {
     enable = true;
     settings =
     {
-      theme = "autumn_night";
+      theme = "github_light_high_contrast";
     };
-    languages = [
-      {
-        name = "rust";
-        config.checkOnSave = {command = "clippy";};
-      }
-      {
-        name = "javascript";
-        # auto-format = true;
-        formatter = { command = "prettier"; args = ["--parser" "typescript"]; };
-      }
-    ];
-    
+    languages = {
+        rust = {
+          config.checkOnSave = {command = "clippy";};
+        };
+        javascript = {
+          # auto-format = true;
+          formatter = { command = "prettier"; args = ["--parser" "typescript"]; };
+        };
+    };
   };
   programs.firefox = {
     enable = true;
-    extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-      browserpass
-      textern
-      i-dont-care-about-cookies
-      ublock-origin
-      vimium
-    ];
     profiles = {
       wagnerf = {
         name = "wagnerf";
@@ -198,6 +189,13 @@
           "general.useragent.locale" = "fr";
           "intl.locale.requested" = "fr,en-US";
         };
+        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          browserpass
+          textern
+          i-dont-care-about-cookies
+          ublock-origin
+          vimium
+        ];
       };
     };
   };
@@ -215,7 +213,7 @@
     font.name = "Monaspace Argon";
     font.size = 16;
     settings = {enable_audio_bell = false;};
-    theme = "Argonaut";
+    theme = "GitHub Light Colorblind";
   };
   programs.git = {
     enable = true;
@@ -242,8 +240,7 @@
     };
     initExtra = ''
       eval "$(direnv hook zsh)"
-      alias ls=exa
-      alias cat=bat
+      alias ls=eza
     '';
     loginExtra = ''
       setopt extendedglob
@@ -277,16 +274,16 @@
   services.gpg-agent.enableSshSupport = true;
   services.network-manager-applet.enable = true;
   services.flameshot.enable = true;
-  services.redshift = {
-    enable = true;
-    latitude = "45.1667";
-    longitude = "5.7167";
-    settings = {
-      redshift.brightness-day = "0.9";
-      redshift.brightness-night = "0.7";
-    };
-    tray = true;
-  };
+  # services.redshift = {
+  #   enable = true;
+  #   latitude = "45.1667";
+  #   longitude = "5.7167";
+  #   settings = {
+  #     redshift.brightness-day = "0.9";
+  #     redshift.brightness-night = "0.7";
+  #   };
+  #   tray = true;
+  # };
 
 
   # This value determines the Home Manager release that your

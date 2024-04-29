@@ -12,15 +12,14 @@
 
   nix.trustedUsers = [ "root" "wagnerf" ];
   environments.wagner.common.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
-  # services.xserver.videoDrivers = [ "nv" ];
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_340;
+  # services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "nouveau" ];
+  # hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_340;
   hardware.bluetooth.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_5_4;
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
   # boot.loader.grub.efiSupport = true;
   # boot.loader.grub.efiInstallAsRemovable = true;
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
@@ -37,6 +36,7 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   services.xserver.layout = "us";
+  # services.opensnitch.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

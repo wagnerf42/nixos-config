@@ -8,6 +8,7 @@ with lib;
 
   config = mkIf config.environments.wagner.common.enable {
       nixpkgs.config.allowUnfree = true;
+      # nixpkgs.config.nvidia.acceptLicense = true;
       services.xserver.windowManager.i3.enable = true;
       services.xserver.windowManager.i3.package = pkgs.i3-gaps;
 
@@ -16,7 +17,7 @@ with lib;
          defaultLocale = "fr_FR.UTF-8";
       };
 
-      console.font = "Lat1-Terminus16";
+      # console.font = "Lat1-Terminus16";
       console.keyMap = "us";
 
       # Set your time zone.
@@ -41,6 +42,8 @@ with lib;
 
       # Enable touchpad support.
       services.xserver.libinput.enable = true;
+
+      programs.zsh.enable=true;
 
       # Define a user account. Don't forget to set a password with ‘passwd’.
       users.extraUsers.wagnerf = {
@@ -75,6 +78,6 @@ with lib;
       # compatible, in order to avoid breaking some software such as database
       # servers. You should change this only after NixOS release notes say you
       # should.
-      system.stateVersion = "22.05"; # Did you read the comment?
+      system.stateVersion = "23.11"; # Did you read the comment?
   };
 }
