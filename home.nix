@@ -241,6 +241,7 @@
     initExtra = ''
       eval "$(direnv hook zsh)"
       alias ls=eza
+      alias cat="bat --theme gruvbox-light"
     '';
     loginExtra = ''
       setopt extendedglob
