@@ -260,8 +260,8 @@
       package = pkgs.gnome3.adwaita-icon-theme;
     };
     theme = {
-      name = "Adapta-Nokto";
-      package = pkgs.adapta-gtk-theme;
+      name = "HighContrast";
+      package = pkgs.gnome-themes-extra;
     };
   };
   qt = {
