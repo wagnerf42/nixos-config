@@ -58,7 +58,7 @@
     links2
     curl
     sshfs
-    nixfmt
+    nixfmt-classic
     file
     htop
     nix-prefetch-git
@@ -77,7 +77,7 @@
     # multimedia
     gnome.eog geeqie
     audacity sox
-    (pkgs.callPackage ./config/arcwelder.nix {})
+    # (pkgs.callPackage ./config/arcwelder.nix {})
     spotify
     gnome3.gnome-backgrounds
     evince
@@ -226,7 +226,7 @@
   };
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     envExtra = ''
       export PATH=~/.cargo/bin:~/.nix-profile/bin:$PATH
       export NIX_PATH=~/.nix-defexpr/channels
@@ -266,13 +266,14 @@
   };
   qt = {
     enable = true;
-    platformTheme = "gtk";
+    platformTheme.name = "gtk";
   };
 
   services.rsibreak.enable = true;
   services.gnome-keyring.enable = true;
   services.gpg-agent.enable = true;
   services.gpg-agent.enableSshSupport = true;
+  services.gpg-agent.pinentryPackage = pkgs.pinentry-gtk2;
   services.network-manager-applet.enable = true;
   services.flameshot.enable = true;
   # services.redshift = {
@@ -295,5 +296,5 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "22.05";
+  home.stateVersion = "24.05";
 }
